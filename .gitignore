@@ -1,0 +1,5 @@
+/app/Config/database.php
+/app/Config/core.php
+/app/tmp/cache/models/myapp_cake_*
+/app/tmp/cache/persistent/myapp_cake_*
+/app/tmp/logs/*.log
