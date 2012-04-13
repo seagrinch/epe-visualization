@@ -4,14 +4,6 @@
 		<legend><?php echo __('Add Vis Tool'); ?></legend>
 	<?php
 		echo $this->Form->input('name');
-		echo $this->Form->input('author');
-		echo $this->Form->input('institution');
-		echo $this->Form->input('keywords');
-		echo $this->Form->input('description');
-		echo $this->Form->input('source_code');
-		echo $this->Form->input('config_code');
-		echo $this->Form->input('tool_type');
-		echo $this->Form->input('status');
 	?>
 	</fieldset>
 <?php echo $this->Form->end(__('Submit'));?>

@@ -62,8 +62,8 @@
 
 <?php 
 echo $this->Html->script('d3.v2.min');
-echo $this->Html->script($visInstance['VisTool']['source_code']);
-echo $this->Html->css($visInstance['VisTool']['source_code']);
+echo $this->Html->script('/files/tools/vistool' . $visInstance['VisTool']['id'] . '.js');
+echo $this->Html->css('/files/tools/vistool' . $visInstance['VisTool']['id'] . '.css');
 ?>
 <script>
 chart( <?php echo $visInstance['VisInstance']['config_settings']?> );

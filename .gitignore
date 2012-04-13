@@ -3,3 +3,5 @@
 /app/tmp/cache/models/myapp_cake_*
 /app/tmp/cache/persistent/myapp_cake_*
 /app/tmp/logs/*.log
+/app/webroot/files/*
+.DS_Store

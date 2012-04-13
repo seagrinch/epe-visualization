@@ -42,7 +42,7 @@ class VisToolsController extends AppController {
 			$this->VisTool->create();
 			if ($this->VisTool->save($this->request->data)) {
 				$this->Session->setFlash(__('The vis tool has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'edit', $this->VisTool->id));
 			} else {
 				$this->Session->setFlash(__('The vis tool could not be saved. Please, try again.'));
 			}
@@ -61,9 +61,9 @@ class VisToolsController extends AppController {
 			throw new NotFoundException(__('Invalid vis tool'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-			if ($this->VisTool->save($this->request->data)) {
+			if ($this->VisTool->save($this->request->data)) {		
 				$this->Session->setFlash(__('The vis tool has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
 				$this->Session->setFlash(__('The vis tool could not be saved. Please, try again.'));
 			}

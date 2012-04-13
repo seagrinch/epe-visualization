@@ -106,8 +106,8 @@
 
 <?php 
 echo $this->Html->script('d3.v2.min');
-echo $this->Html->script($visTool['VisTool']['source_code']);
-echo $this->Html->css($visTool['VisTool']['source_code']);
+echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js');
+echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css');
 ?>
 <script>
 chart();
