@@ -7,8 +7,8 @@
     <p><strong>Status</strong>: <?php echo h($visualization['Visualization']['is_public']); ?></p>
     <p><strong>Author</strong>: <?php echo $this->Html->link($visualization['User']['id'], array('controller' => 'users', 'action' => 'view', $visualization['User']['id'])); ?></p>
     <p><strong>Provenance</strong>: <?php echo $this->Html->link($visualization['Provenance']['name'], array('controller' => 'visualizations', 'action' => 'view', $visualization['Provenance']['id'])); ?></p>
-		<p><?php echo $this->Form->postLink(__('Delete Visualization'), array('action' => 'delete', $visualization['Visualization']['id']), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visualization['Visualization']['name'])); ?></p>
-		<p><?php echo $this->Html->link(__('Edit Visualization'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary')); ?> </p>
+		<p><?php echo $this->Html->link(__('<i class="icon-trash icon-white"></i> Delete Visualization'), array('action' => 'delete', $visualization['Visualization']['id']), array('class'=>'btn btn-danger','escape'=>false), __('Are you sure you want to delete %s?', $visualization['Visualization']['name'])); ?></p>
+		<p><?php echo $this->Html->link(__('<i class="icon-edit icon-white"></i> Edit Visualization'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?> </p>
   </div>
   <div class="span8">
     <div id="chart"></div>
