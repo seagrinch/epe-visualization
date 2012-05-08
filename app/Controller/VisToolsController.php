@@ -47,10 +47,10 @@ class VisToolsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->VisTool->create();
 			if ($this->VisTool->save($this->request->data)) {
-				$this->Session->setFlash('The new Visualization Tool was created','default',array('class'=>'alert alert-success'));
+				$this->Session->setFlash('A new visualization tool was created.','default',array('class'=>'alert alert-success'));
 				$this->redirect(array('action' => 'edit', $this->VisTool->id));
 			} else {
-				$this->Session->setFlash('Your new Visualization Tool could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
+				$this->Session->setFlash('The visualization tool could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
 			}
 		}
 	}
@@ -68,10 +68,10 @@ class VisToolsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->VisTool->save($this->request->data)) {		
-				$this->Session->setFlash(__('The vis tool has been saved'));
+				$this->Session->setFlash('Changes to the visualization tool has been saved.','default',array('class'=>'alert alert-success'));
 				$this->redirect(array('action' => 'view', $id));
 			} else {
-				$this->Session->setFlash(__('The vis tool could not be saved. Please, try again.'));
+				$this->Session->setFlash('The visualization tool could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
 			}
 		} else {
 			$this->request->data = $this->VisTool->read(null, $id);

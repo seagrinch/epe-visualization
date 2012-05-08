@@ -47,10 +47,10 @@ class VisualizationsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->Visualization->create();
 			if ($this->Visualization->save($this->request->data)) {
-				$this->Session->setFlash(__('The vis instance has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('Your custom visualization was created.','default',array('class'=>'alert alert-success'));
+				$this->redirect(array('action' => 'view', $this->Visualization->id));
 			} else {
-				$this->Session->setFlash(__('The vis instance could not be saved. Please, try again.'));
+				$this->Session->setFlash('Your custom visualization could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
 			}
 		}
 		$visTools = $this->Visualization->VisTool->find('list');
@@ -71,26 +71,15 @@ class VisualizationsController extends AppController {
 			throw new NotFoundException(__('Invalid vis instance'));
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
-		  $this->request->data['Visualization']['config_settings'] = json_encode(array(
-		    'color'=>$this->request->data['Visualization']['color'],
-		    'data'=>$this->request->data['Visualization']['data']
-		    ));
 			if ($this->Visualization->save($this->request->data)) {
-				$this->Session->setFlash(__('The vis instance has been saved'));
-				$this->redirect(array('action' => 'index'));
+				$this->Session->setFlash('Changes to your custom visualization have been saved.','default',array('class'=>'alert alert-success'));
+				$this->redirect(array('action' => 'view', $id));
 			} else {
-				$this->Session->setFlash(__('The vis instance could not be saved. Please, try again.'));
+				$this->Session->setFlash('Your custom visualization could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
 			}
 		} else {
 			$this->request->data = $this->Visualization->read(null, $id);
-			$settings = json_decode($this->request->data['Visualization']['config_settings'],1);
-		  $this->request->data['Visualization']['color'] = $settings['color'];
-		  $this->request->data['Visualization']['data'] = $settings['data'];
 		}
-		$visTools = $this->Visualization->VisTool->find('list');
-		$users = $this->Visualization->User->find('list');
-		$provenances = $this->Visualization->Provenance->find('list');
-		$this->set(compact('visTools', 'users', 'provenances'));
 	}
 
 /**

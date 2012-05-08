@@ -17,9 +17,9 @@ class Visualization extends AppModel {
 		'vis_tool_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Error: A vis_tool_id must be specified',
 				//'allowEmpty' => false,
-				//'required' => false,
+				'required' => 'create',
 				//'last' => false, // Stop validation after this rule
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
@@ -27,7 +27,27 @@ class Visualization extends AppModel {
 		'user_id' => array(
 			'numeric' => array(
 				'rule' => array('numeric'),
-				//'message' => 'Your custom message here',
+				'message' => 'Error: A user_id must be specified',
+				//'allowEmpty' => false,
+				'required' => 'create',
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please specify a name',
+				//'allowEmpty' => false,
+				//'required' => false,
+				//'last' => false, // Stop validation after this rule
+				//'on' => 'create', // Limit validation to 'create' or 'update' operations
+			),
+		),
+		'description' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'Please enter a short description of this tool',
 				//'allowEmpty' => false,
 				//'required' => false,
 				//'last' => false, // Stop validation after this rule

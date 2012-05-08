@@ -414,7 +414,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 
 tool_instance_editor.prototype.setJSON = function(){
 	var instance = this;
-	$('#instance_json_config').html(
+	$('#instance_json_config').val(
 		$.toJSON(instance.current_config)
 	);
 }

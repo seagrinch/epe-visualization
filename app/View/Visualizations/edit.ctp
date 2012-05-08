@@ -4,20 +4,21 @@
   
     <div class="tabbable">
       <ul class="nav nav-tabs">
-        <li class="active"><a href="#etab1" data-toggle="tab">Metadata</a></li>
-        <li><a href="#etab2" data-toggle="tab">Configuration</a></li>
+        <li class="active"><a href="#vistab1" data-toggle="tab">Metadata</a></li>
+        <li><a href="#vistab2" data-toggle="tab">Configuration</a></li>
       </ul>
       <?php echo $this->Form->create('Visualization');?>
       <div class="tab-content">
-        <div class="tab-pane active" id="etab1">
+        <div class="tab-pane active" id="vistab1">
           <?php
           echo $this->Form->input('id');
           echo $this->Form->input('name');
           echo $this->Form->input('description');
           echo $this->Form->input('is_public');
+          echo $this->Form->input('config_settings',array('type'=>'hidden','id'=>'instance_json_config'));
           ?>
         </div>
-        <div class="tab-pane" id="etab2">
+        <div class="tab-pane" id="vistab2">
           <div id="tool_controls"></div>
         </div>
       </div> <!-- tab-content-->
