@@ -9,9 +9,9 @@
 
     <!-- Le styles -->
     <?php
-		echo $this->Html->css('bootstrap/bootstrap.min');
-		echo $this->Html->css('bootstrap/colorpicker');
-		echo $this->Html->css('bootstrap/datepicker');
+		echo $this->Html->css('bootstrap.min');
+		echo $this->Html->css('colorpicker');
+		echo $this->Html->css('datepicker');
     ?>
     <style type="text/css">
       body {
