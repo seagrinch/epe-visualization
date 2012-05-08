@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * VisTool Model
  *
- * @property VisInstance $VisInstance
+ * @property Visualization $Visualization
  */
 class VisTool extends AppModel {
 /**
@@ -60,8 +60,8 @@ class VisTool extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'VisInstance' => array(
-			'className' => 'VisInstance',
+		'Visualization' => array(
+			'className' => 'Visualization',
 			'foreignKey' => 'vis_tool_id',
 			'dependent' => false,
 			'conditions' => '',

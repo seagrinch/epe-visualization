@@ -7,6 +7,12 @@ App::uses('AppController', 'Controller');
  */
 class VisToolsController extends AppController {
 
+    public $paginate = array(
+        'limit' => 10,
+        'order' => array(
+            'VisTool.id' => 'asc'
+        )
+    );
 
 /**
  * index method
@@ -41,10 +47,10 @@ class VisToolsController extends AppController {
 		if ($this->request->is('post')) {
 			$this->VisTool->create();
 			if ($this->VisTool->save($this->request->data)) {
-				$this->Session->setFlash(__('The vis tool has been saved'));
+				$this->Session->setFlash('The new Visualization Tool was created','default',array('class'=>'alert alert-success'));
 				$this->redirect(array('action' => 'edit', $this->VisTool->id));
 			} else {
-				$this->Session->setFlash(__('The vis tool could not be saved. Please, try again.'));
+				$this->Session->setFlash('Your new Visualization Tool could not be saved. Please, try again.','default',array('class'=>'alert alert-error'));
 			}
 		}
 	}
@@ -93,4 +99,20 @@ class VisToolsController extends AppController {
 		$this->Session->setFlash(__('Vis tool was not deleted'));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+/**
+ * settings method
+ *
+ * @param string $id
+ * @return void
+ */
+	public function settings($id = null) {
+		$this->VisTool->id = $id;
+		if (!$this->VisTool->exists()) {
+			throw new NotFoundException(__('Invalid vis tool'));
+		}
+		$this->set('visTool', $this->VisTool->read(null, $id));
+	  $this->layout = 'ajax';
+	}
+
 }

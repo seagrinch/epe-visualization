@@ -1,10 +1,10 @@
 <?php
-App::uses('VisInstancesController', 'Controller');
+App::uses('VisualizationsController', 'Controller');
 
 /**
- * TestVisInstancesController *
+ * TestVisualizationsController *
  */
-class TestVisInstancesController extends VisInstancesController {
+class TestVisualizationsController extends VisualizationsController {
 /**
  * Auto render
  *
@@ -26,10 +26,10 @@ class TestVisInstancesController extends VisInstancesController {
 }
 
 /**
- * VisInstancesController Test Case
+ * VisualizationsController Test Case
  *
  */
-class VisInstancesControllerTestCase extends CakeTestCase {
+class VisualizationsControllerTestCase extends CakeTestCase {
 /**
  * Fixtures
  *
@@ -44,8 +44,8 @@ class VisInstancesControllerTestCase extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->VisInstances = new TestVisInstancesController();
-		$this->VisInstances->constructClasses();
+		$this->Visualizations = new TestVisualizationsController();
+		$this->Visualications->constructClasses();
 	}
 
 /**
@@ -54,7 +54,7 @@ class VisInstancesControllerTestCase extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->VisInstances);
+		unset($this->Visualizations);
 
 		parent::tearDown();
 	}

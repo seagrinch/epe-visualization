@@ -1,13 +1,13 @@
 <?php
 App::uses('AppModel', 'Model');
 /**
- * VisInstance Model
+ * Visualization Model
  *
  * @property VisTool $VisTool
  * @property User $User
  * @property Provenance $Provenance
  */
-class VisInstance extends AppModel {
+class Visualization extends AppModel {
 /**
  * Validation rules
  *
@@ -59,7 +59,7 @@ class VisInstance extends AppModel {
 			'order' => ''
 		),
 		'Provenance' => array(
-			'className' => 'visInstance',
+			'className' => 'Visualization',
 			'foreignKey' => 'provenance_id',
 			'conditions' => '',
 			'fields' => '',

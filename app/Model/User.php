@@ -3,7 +3,7 @@ App::uses('AppModel', 'Model');
 /**
  * User Model
  *
- * @property VisInstance $VisInstance
+ * @property Visualization $Visualization
  */
 class User extends AppModel {
 
@@ -15,8 +15,8 @@ class User extends AppModel {
  * @var array
  */
 	public $hasMany = array(
-		'VisInstance' => array(
-			'className' => 'VisInstance',
+		'Visualization' => array(
+			'className' => 'Visualization',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
 			'conditions' => '',

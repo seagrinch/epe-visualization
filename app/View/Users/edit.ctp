@@ -18,7 +18,7 @@
 
 		<li><?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $this->Form->value('User.id')), null, __('Are you sure you want to delete # %s?', $this->Form->value('User.id'))); ?></li>
 		<li><?php echo $this->Html->link(__('List Users'), array('action' => 'index'));?></li>
-		<li><?php echo $this->Html->link(__('List Vis Instances'), array('controller' => 'vis_instances', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'vis_instances', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Vis Instances'), array('controller' => 'visualizations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'visualizations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

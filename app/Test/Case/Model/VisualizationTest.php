@@ -1,11 +1,11 @@
 <?php
-App::uses('VisInstance', 'Model');
+App::uses('Visualization', 'Model');
 
 /**
- * VisInstance Test Case
+ * Visualization Test Case
  *
  */
-class VisInstanceTestCase extends CakeTestCase {
+class VisualizationTestCase extends CakeTestCase {
 /**
  * Fixtures
  *
@@ -20,7 +20,7 @@ class VisInstanceTestCase extends CakeTestCase {
  */
 	public function setUp() {
 		parent::setUp();
-		$this->VisInstance = ClassRegistry::init('VisInstance');
+		$this->Visualization = ClassRegistry::init('Visualization');
 	}
 
 /**
@@ -29,7 +29,7 @@ class VisInstanceTestCase extends CakeTestCase {
  * @return void
  */
 	public function tearDown() {
-		unset($this->VisInstance);
+		unset($this->Visualization);
 
 		parent::tearDown();
 	}

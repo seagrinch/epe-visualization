@@ -16,7 +16,7 @@
 	<ul>
 		<li><?php echo $this->Html->link(__('List Vis Tools'), array('controller' => 'vis_tools', 'action' => 'index')); ?> </li>
 		<li><?php echo $this->Html->link(__('New Vis Tool'), array('controller' => 'vis_tools', 'action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Vis Instances'), array('controller' => 'vis_instances', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'vis_instances', 'action' => 'add')); ?> </li>
+		<li><?php echo $this->Html->link(__('List Vis Instances'), array('controller' => 'visualizations', 'action' => 'index')); ?> </li>
+		<li><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'visualizations', 'action' => 'add')); ?> </li>
 	</ul>
 </div>

@@ -1,9 +1,9 @@
 <?php
 /**
- * VisInstanceFixture
+ * VisualizationFixture
  *
  */
-class VisInstanceFixture extends CakeTestFixture {
+class VisualizationFixture extends CakeTestFixture {
 
 /**
  * Fields
