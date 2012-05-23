@@ -1,50 +1,32 @@
-<div class="users index">
-	<h2><?php echo __('Users');?></h2>
-	<table cellpadding="0" cellspacing="0">
-	<tr>
-			<th><?php echo $this->Paginator->sort('id');?></th>
-			<th><?php echo $this->Paginator->sort('username');?></th>
-			<th><?php echo $this->Paginator->sort('password');?></th>
-			<th><?php echo $this->Paginator->sort('email');?></th>
-			<th><?php echo $this->Paginator->sort('is_admin');?></th>
-			<th class="actions"><?php echo __('Actions');?></th>
-	</tr>
-	<?php
-	foreach ($users as $user): ?>
-	<tr>
-		<td><?php echo h($user['User']['id']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['username']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['password']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['email']); ?>&nbsp;</td>
-		<td><?php echo h($user['User']['is_admin']); ?>&nbsp;</td>
-		<td class="actions">
-			<?php echo $this->Html->link(__('View'), array('action' => 'view', $user['User']['id'])); ?>
-			<?php echo $this->Html->link(__('Edit'), array('action' => 'edit', $user['User']['id'])); ?>
-			<?php echo $this->Form->postLink(__('Delete'), array('action' => 'delete', $user['User']['id']), null, __('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-	</table>
-	<p>
-	<?php
-	echo $this->Paginator->counter(array(
-	'format' => __('Page {:page} of {:pages}, showing {:current} records out of {:count} total, starting on record {:start}, ending on {:end}')
-	));
-	?>	</p>
+<h1>Site Members</h1>
+<div class="pull-right">
+  <?php echo $this->Form->create('User',array('action'=>'index'),array('class'=>'well form-search')); ?>
+  <?php echo $this->Form->input('search',array('class'=>'search-query','label'=>'','div'=>false));?>
+  <?php echo $this->Form->submit('Search Members',array('class'=>'btn','div'=>false));?> 
+  <?php echo $this->Html->link('Clear Results',array('action'=>'index','clear'),array('class'=>'btn'));?>
+  <?php echo $this->Form->end(); ?> 
+</div>
+<?php if(!empty($users)) { ?>
+<table class="table table-striped table-condensed">
+  <thead>
+	  <tr>
+			<th><?php echo $this->Paginator->sort('name');?></th>
+			<th><?php echo $this->Paginator->sort('institution');?></th>
+			<th><?php echo $this->Paginator->sort('created','Joined');?></th>
+			<th></th>
+	  </tr>
+  </thead>
+  <tbody>
+    <?php foreach ($users as $user) { ?>
+    <tr>
+      <td><?php echo $this->Html->link($user['User']['name'],array('action'=>'profile',$user['User']['username'])); ?></td>
+      <td><?php echo $user['User']['institution']?></td>
+      <td><?php echo $this->Time->niceShort($user['User']['created']); ?></td>
+    <?php } ?> 
+  </tbody>
+</table>
+<?php } else { ?>
+<p class="alert warning">No users found.</p>
+<?php } ?> 
 
-	<div class="paging">
-	<?php
-		echo $this->Paginator->prev('< ' . __('previous'), array(), null, array('class' => 'prev disabled'));
-		echo $this->Paginator->numbers(array('separator' => ''));
-		echo $this->Paginator->next(__('next') . ' >', array(), null, array('class' => 'next disabled'));
-	?>
-	</div>
-</div>
-<div class="actions">
-	<h3><?php echo __('Actions'); ?></h3>
-	<ul>
-		<li><?php echo $this->Html->link(__('New User'), array('action' => 'add')); ?></li>
-		<li><?php echo $this->Html->link(__('List Vis Instances'), array('controller' => 'visualizations', 'action' => 'index')); ?> </li>
-		<li><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'visualizations', 'action' => 'add')); ?> </li>
-	</ul>
-</div>
+<?php echo $this->Paginator->pagination(); ?>

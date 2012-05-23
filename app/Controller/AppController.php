@@ -33,11 +33,30 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-    public $helpers = array(
+  public $components = array(
+    'Session',
+    'Auth' => array(
+        //'loginRedirect' => array('controller'=>'pages','action'=>'display','home'),
+        'logoutRedirect' => array('controller'=>'pages','action'=>'display','home'),
+        'authorize' => array('Controller'),
+        'authenticate' => array('Form'),
+        'authError' => 'Please log in to view this page.',
+
+    )
+  );
+
+  public $helpers = array(
         'Session',
         'Html' => array('className' => 'TwitterBootstrap.BootstrapHtml'),
         'Form' => array('className' => 'TwitterBootstrap.BootstrapForm'),
         'Paginator' => array('className' => 'TwitterBootstrap.BootstrapPaginator'),
-    );
+  );
 
-}  
+  public function isAuthorized($user) {
+    if (isset($this->request->params['admin'])) {
+      return (bool)($user['is_admin'] == 1);
+    }
+    return true;
+  }
+
+}

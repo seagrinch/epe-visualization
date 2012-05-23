@@ -1,4 +1,10 @@
 <h2>Visualization Tool: <?php echo h($visTool['VisTool']['name']); ?></h2>
+		<?php if ($this->Session->read('Auth.User.is_admin')) { ?>
+		  <div class="pull-right">
+		  <?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
+		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> 
+  		</div>
+		<?php } ?> 
 <div class="row">
   <div class="span4 pull-right">
     <h3>Description</h3>
@@ -8,7 +14,6 @@
     <p><strong>Status</strong>: <?php echo h($visTool['VisTool']['status']); ?></p>
     <p><strong>Author</strong>: <?php echo h($visTool['VisTool']['author']); ?></p>
     <p><strong>Institution</strong>: <?php echo h($visTool['VisTool']['institution']); ?></p>
-		<p><?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id']), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?> <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id']),array('class'=>'btn btn-primary')); ?> </p>
   </div>
   <div class="span8">
     <h3>Example tool with default settings</h3>
@@ -27,30 +32,26 @@
 <div class="row">
   <div class="span8">
     <h3>Custom Visualizations</h3>
-	  <?php if (!empty($visTool['Visualization'])):?>
+	  <?php if (!empty($instances)):?>
 	  <table cellpadding = "0" cellspacing = "0" class="table table-striped">
 	<tr>
-		<th><?php echo __('Id'); ?></th>
 		<th><?php echo __('Name'); ?></th>
 		<th><?php echo __('Description'); ?></th>
-		<th><?php echo __('Is Public'); ?></th>
-		<th><?php echo __('Provenance Id'); ?></th>
+		<th><?php echo __('Creator'); ?></th>
 	</tr>
 	<?php
 		$i = 0;
-		foreach ($visTool['Visualization'] as $visualization): ?>
+		foreach ($instances as $instance): ?>
 		<tr>
-			<td><?php echo $visualization['id'];?></td>
-			<td><?php echo $this->Html->link($visualization['name'], array('controller' => 'visualizations', 'action' => 'view', $visualization['id'])); ?></td>
-			<td><?php echo $visualization['description'];?></td>
-			<td><?php echo $visualization['is_public'];?></td>
-			<td><?php echo $visualization['provenance_id'];?></td>
+			<td><?php echo $this->Html->link($instance['Visualization']['name'], array('controller' => 'visualizations', 'action' => 'view', $instance['Visualization']['id'])); ?></td>
+			<td><?php echo $instance['Visualization']['description'];?></td>
+			<td><?php echo $instance['User']['name'];?></td>
 		</tr>
 	<?php endforeach; ?>
 	</table>
 <?php endif; ?>
 
-			<p><?php echo $this->Html->link(__('New Vis Instance'), array('controller' => 'visualizations', 'action' => 'add', $visTool['VisTool']['id']),array('class'=>'btn btn-primary'));?> </p>
+			<p><?php echo $this->Html->link(__('Customize this Visualization'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary'));?> </p>
   </div>
   <div class="span4">&nbsp;
   </div>

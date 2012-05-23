@@ -3,11 +3,10 @@
 	<tr>
 			<th><?php echo $this->Paginator->sort('id');?></th>
 			<th><?php echo $this->Paginator->sort('name');?></th>
-			<th><?php echo $this->Paginator->sort('VisTool.name');?></th>
-			<th><?php echo $this->Paginator->sort('User.username');?></th>
+			<th><?php echo $this->Paginator->sort('VisTool.name','Visualization Tool');?></th>
+			<th><?php echo $this->Paginator->sort('User.name','User');?></th>
 			<th><?php echo $this->Paginator->sort('description');?></th>
-			<th><?php echo $this->Paginator->sort('is_public');?></th>
-			<th><?php echo $this->Paginator->sort('provenance_id');?></th>
+			<th><?php echo $this->Paginator->sort('created');?></th>
 	</tr>
 	<?php
 	foreach ($visualizations as $visualization): ?>
@@ -18,17 +17,14 @@
 			<?php echo $this->Html->link($visualization['VisTool']['name'], array('controller' => 'vis_tools', 'action' => 'view', $visualization['VisTool']['id'])); ?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($visualization['User']['username'], array('controller' => 'users', 'action' => 'view', $visualization['User']['id'])); ?>
+			<?php echo $this->Html->link($visualization['User']['name'], array('controller' => 'users', 'action' => 'view', $visualization['User']['id'])); ?>
 		</td>
 		<td><?php echo h($visualization['Visualization']['description']); ?>&nbsp;</td>
-		<td><?php echo h($visualization['Visualization']['is_public']); ?>&nbsp;</td>
-		<td>
-			<?php echo $this->Html->link($visualization['Provenance']['name'], array('controller' => 'visualizations', 'action' => 'view', $visualization['Provenance']['id'])); ?>
-		</td>
+		<td><?php echo $this->Time->niceShort($visualization['Visualization']['created']); ?>&nbsp;</td>
 	</tr>
 <?php endforeach; ?>
 	</table>
 
 <?php echo $this->Paginator->pagination(); ?>
 
-<?php echo $this->Html->link('Create a New Custom Visualization', array('action' => 'add'),array('class'=>'btn btn-primary')); ?>
+<?php echo $this->Html->link('Visualization Tool List', array('controller'=>'vis_tools','action' => 'index'),array('class'=>'btn btn-primary')); ?>

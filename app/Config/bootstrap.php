@@ -122,4 +122,15 @@ Cache::config('default', array('engine' => 'File'));
  * CakePlugin::load('DebugKit'); //Loads a single plugin named DebugKit
  *
  */
+
+//Load global plugins
 CakePlugin::load('TwitterBootstrap');
+
+// set email address for sending emails
+define("siteName", 'OOI EPE EdVis');
+
+// set email address for sending emails
+define("emailFromAddress", 'sage@marine.rutgers.edu');
+
+// set site name for sending emails
+define("emailFromName", 'OOI EPE');
