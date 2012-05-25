@@ -86,4 +86,9 @@ class Visualization extends AppModel {
 			'order' => ''
 		)
 	);
+
+  public function isOwnedBy($id, $user) {
+    return $this->field('id', array('id' => $id, 'user_id' => $user)) === $id;
+  }
+
 }

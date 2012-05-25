@@ -51,7 +51,7 @@
 	</table>
 <?php endif; ?>
 
-			<p><?php echo $this->Html->link(__('Customize this Visualization'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary'));?> </p>
+			<p><?php echo $this->Html->link(__('Customize this Tool'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary'));?> </p>
   </div>
   <div class="span4">&nbsp;
   </div>

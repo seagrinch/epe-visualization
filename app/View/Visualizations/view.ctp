@@ -9,11 +9,11 @@
       <p><strong>Provenance</strong>: <?php echo $this->Html->link($visualization['Provenance']['name'], array('controller' => 'visualizations', 'action' => 'view', $visualization['Provenance']['id'])); ?></p>
 		<?php } ?> 
 		<?php if ($this->Session->read('Auth.User.id')==$visualization['Visualization']['user_id']) { ?>
-		  <p><?php echo $this->Html->link(__('<i class="icon-trash icon-white"></i> Delete Visualization'), array('action' => 'delete', $visualization['Visualization']['id']), array('class'=>'btn btn-danger','escape'=>false), __('Are you sure you want to delete %s?', $visualization['Visualization']['name'])); ?></p>
-		  <p><?php echo $this->Html->link(__('<i class="icon-edit icon-white"></i> Edit Visualization'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?></p>
+		  <?php echo $this->Html->link(__('<i class="icon-trash icon-white"></i> Delete'), array('action' => 'delete', $visualization['Visualization']['id']), array('class'=>'btn btn-danger','escape'=>false), __('Are you sure you want to delete %s?', $visualization['Visualization']['name'])); ?>
+		  <?php echo $this->Html->link(__('<i class="icon-edit icon-white"></i> Edit'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?>
 		<?php } ?> 
 		<?php if ($this->Session->read('Auth.User.id')) { ?>
-      <p><?php echo $this->Html->link(__('<i class="icon-plus icon-white"></i> Copy Visualization'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?></p>
+      <?php echo $this->Html->link(__('<i class="icon-plus icon-white"></i> Copy'), array('action' => 'copy', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?>
 		<?php } ?> 
   </div>
   <div class="span8">
