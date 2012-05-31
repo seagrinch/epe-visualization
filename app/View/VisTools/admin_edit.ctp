@@ -7,7 +7,11 @@
 		<legend>Edit Visualization Tool</legend>
 	<?php
 	  $status_options = array('Draft'=>'Draft','In Review'=>'In Review','Published'=>'Published');
-	  $tool_types = array('Time Series'=>'Time Series','Profile'=>'Profile','Map'=>'Map','Other'=>'Other');
+	  $tool_types = array('Time Series'=>'Time Series',
+	  'Profile'=>'Profile',
+	  'Transect'=>'Transect',
+	  'Map'=>'Map',
+	  'Other'=>'Other');
 	 
 		echo $this->Form->input('id');
 		echo $this->Form->input('name',array('label'=>'Tool Name'));

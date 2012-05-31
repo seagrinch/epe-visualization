@@ -74,26 +74,6 @@ class VisTool extends AppModel {
 			'counterQuery' => ''
 		)
 	);
-
-  public function beforeSave() {
-  if (isset($this->data['VisTool']['file_source'])) {
-    if (is_uploaded_file($this->data['VisTool']['file_source']['tmp_name'])) {
-      move_uploaded_file($this->data['VisTool']['file_source']['tmp_name'], 
-        WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.js');
-    }
-    if (is_uploaded_file($this->data['VisTool']['file_css']['tmp_name'])) {
-      move_uploaded_file($this->data['VisTool']['file_css']['tmp_name'], 
-        WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.css');
-    }
-    if (is_uploaded_file($this->data['VisTool']['file_thumbnail']['tmp_name'])) {
-      move_uploaded_file($this->data['VisTool']['file_thumbnail']['tmp_name'], 
-        WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.jpg');
-    }
-    debug($this->data['VisTool']);
-    //if(!isset($result['errors'][1])) {
-    return true;
-  }
-  }
   
   // The following functions are adapted from
   // http://stackoverflow.com/questions/4836606/cakephps-file-upload-validator

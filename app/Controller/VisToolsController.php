@@ -8,6 +8,7 @@ App::uses('AppController', 'Controller');
 class VisToolsController extends AppController {
 
   public $uses = array('VisTool','Visualization');
+  public $components = array('ImageTool');
 
   public $paginate = array(
       'limit' => 10,
@@ -83,6 +84,24 @@ class VisToolsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
 			if ($this->VisTool->save($this->request->data)) {		
+        if (is_uploaded_file($this->data['VisTool']['file_source']['tmp_name'])) {
+          move_uploaded_file($this->data['VisTool']['file_source']['tmp_name'], 
+            WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.js');
+        }
+        if (is_uploaded_file($this->data['VisTool']['file_css']['tmp_name'])) {
+          move_uploaded_file($this->data['VisTool']['file_css']['tmp_name'], 
+            WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.css');
+        }
+        if (is_uploaded_file($this->data['VisTool']['file_thumbnail']['tmp_name'])) {
+          $status = $this->ImageTool->resize(array(
+            'input' => $this->data['VisTool']['file_thumbnail']['tmp_name'],
+            'output' => WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.jpg',
+            'width' => 260,
+            'height' => 180,
+            'keepRatio' => true,
+            'paddings' => true,
+          ));
+        }
 				$this->Session->setFlash(__('Changes to the visualization tool has been saved.'),'alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-success'));
 				$this->redirect(array('action' => 'view', $id,'admin'=>false));
 			} else {
