@@ -2,8 +2,8 @@
       <div class="hero-unit">
         <h1>Hello, EPE Visualization Gurus!</h1>
         <p>Welcome to the prototype <em>Educational Visualization</em> site of the Ocean Observatories Initiative's educational infrastructure, developed by the Education and Public Engagement (EPE) Implementing Organization.</p>
-        <p><?php echo $this->Html->link('Visualization Tools <i class="icon-chevron-right icon-white"></i>','/vis_tools',array('class'=>'btn btn-primary btn-large','escape'=>'false'));?> 
-          <?php echo $this->Html->link('Custom Visualizations <i class="icon-chevron-right icon-white"></i>','/visualizations',array('class'=>'btn btn-primary btn-large','escape'=>'false'));?></p>
+        <p><?php echo $this->Html->link('Visualization Tools <i class="icon-chevron-right icon-white"></i>','/vis_tools',array('class'=>'btn btn-primary btn-large','escape'=>false));?> 
+          <?php echo $this->Html->link('Custom Visualizations <i class="icon-chevron-right icon-white"></i>','/visualizations',array('class'=>'btn btn-primary btn-large','escape'=>false));?></p>
       </div>
 
       <!-- Example row of columns -->
