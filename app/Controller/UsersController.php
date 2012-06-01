@@ -79,7 +79,7 @@ class UsersController extends AppController {
  * User Login
  */
 	public function login() {
-	  $this->Auth->logout();
+	  //$this->Auth->logout();
     if ($this->request->is('post')) {
       if ($this->Auth->login()) {
         return $this->redirect($this->Auth->redirect());
