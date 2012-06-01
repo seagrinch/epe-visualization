@@ -57,7 +57,7 @@ tool_instance.prototype.create_div = function(){
 tool_instance.prototype.get_settings = function(){
 	var self = this;
 
-	var url_instance_config = EV_BASE_URL + "/visualizations/settings/" + self.id + ".js";
+	var url_instance_config = EV_BASE_URL + "visualizations/settings/" + self.id + ".js";
 	console.log(url_instance_config);
 	
 	// request the configuration settings as json
@@ -67,7 +67,7 @@ tool_instance.prototype.get_settings = function(){
 		self.name = json.tool.name;
 		
 		// now that this is complete, let's grab the associated scripts
-		var url_source = EV_BASE_URL + "/files/tools/vistool" + json.tool.id + ".js";
+		var url_source = EV_BASE_URL + "files/tools/vistool" + json.tool.id + ".js";
 		console.log("URL Source: " + url_source);
 		
 		$.getScript(url_source, function(script, source_status, source_jsonxhr) {
