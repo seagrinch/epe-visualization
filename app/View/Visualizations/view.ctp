@@ -18,10 +18,9 @@
   </div>
   <div class="span8">
     <div id="chart"></div>
-    <?php 
-    echo $this->Html->script('d3.v2.min');
-    echo $this->Html->script('ev_loader');
-    ?>
+    <?php echo $this->Html->script('d3.v2.min'); ?>
+    <?php echo $this->Html->scriptBlock('var EV_BASE_URL="' . FULL_BASE_URL . '";'); ?>
+    <?php echo $this->Html->script('ev_loader'); ?>
     <script>
       var tool = new tool_instance(<?php echo $visualization['Visualization']['id']; ?>,"chart");
     </script>
