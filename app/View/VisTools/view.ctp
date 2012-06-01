@@ -1,19 +1,16 @@
-<h2>Visualization Tool: <?php echo h($visTool['VisTool']['name']); ?></h2>
-		<?php if ($this->Session->read('Auth.User.is_admin')) { ?>
-		  <div class="pull-right">
-		  <?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
-		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> 
-  		</div>
-		<?php } ?> 
 <div class="row">
-  <div class="span4 pull-right">
-    <h3>Description</h3>
+  <div class="span4 pull-right well ">
+    <h3><?php echo h($visTool['VisTool']['name']); ?></h3>
     <p><?php echo h($visTool['VisTool']['description']); ?></p>
     <p><strong>Keywords</strong>: <?php echo h($visTool['VisTool']['keywords']); ?></p>
     <p><strong>Tool Type</strong>: <?php echo h($visTool['VisTool']['tool_type']); ?></p>
     <p><strong>Status</strong>: <?php echo h($visTool['VisTool']['status']); ?></p>
     <p><strong>Author</strong>: <?php echo h($visTool['VisTool']['author']); ?></p>
     <p><strong>Institution</strong>: <?php echo h($visTool['VisTool']['institution']); ?></p>
+		<p><?php if ($this->Session->read('Auth.User.is_admin')) { ?>
+		  <?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
+		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> </p>
+		<?php } ?> 
   </div>
   <div class="span8">
     <h3>Example tool with default settings</h3>
@@ -31,6 +28,7 @@
 </div>
 <div class="row">
   <div class="span8">
+    <hr/>
     <h3>Custom Visualizations</h3>
 	  <?php if (!empty($instances)):?>
 	  <table cellpadding = "0" cellspacing = "0" class="table table-striped">
@@ -53,6 +51,5 @@
 
 			<p><?php echo $this->Html->link(__('Customize this Tool'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary'));?> </p>
   </div>
-  <div class="span4">&nbsp;
-  </div>
+  <div class="span4">&nbsp;</div>
 </div>
