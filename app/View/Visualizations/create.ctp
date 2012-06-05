@@ -34,13 +34,13 @@
   </div> <!-- span4 -->
 
   <div class="span8">
-    <div id="instance_display"></div>
-    <?php 
-      echo $this->Html->script('d3.v2.min');
-      echo $this->Html->script('ev_editor');
-      echo $this->Html->script('jquery.json-2.3.min');
-      echo $this->Html->script('/files/tools/vistool' . $this->data['VisTool']['id'] . '.js');
-     ?>
+    <div id="chart"></div>
+      <?php echo $this->Html->script('d3.v2.min'); ?>
+      <?php echo $this->Html->scriptBlock('var EV_BASE_URL="' . $this->Html->url( '/', true ) . '";'); ?>
+      <?php echo $this->Html->script('jquery.json-2.3.min'); ?>
+      <?php echo $this->Html->script('ev_editor'); ?>
+      <?php echo $this->Html->script('/files/tools/vistool' . $this->data['VisTool']['id'] . '.js'); ?>
+      <?php echo $this->Html->css('/files/tools/vistool' . $this->data['VisTool']['id'] . '.css'); ?>
       <script type="text/javascript">
         var settings = <?php echo (isset($this->data['Visualization']['config_settings']) ? $this->data['Visualization']['config_settings'] : '{}'); ?>;
         var controls = <?php echo $this->data['VisTool']['config_code']; ?>;

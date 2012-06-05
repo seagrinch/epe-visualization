@@ -15,11 +15,10 @@
   <div class="span8">
     <h3>Example tool with default settings</h3>
     <div id="chart"></div>
-    <?php 
-    echo $this->Html->script('d3.v2.min');
-    echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js');
-    echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css');
-    ?>
+      <?php echo $this->Html->script('d3.v2.min'); ?>
+      <?php echo $this->Html->scriptBlock('var EV_BASE_URL="' . $this->Html->url( '/', true ) . '";'); ?>
+      <?php echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js'); ?>
+      <?php echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css'); ?>
     <script>
       self.tool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
       var b = new self.tool('chart', '');
