@@ -1,12 +1,19 @@
+// EPE Visualization Tool Editor
+//
+// Ocean Observatories Initiative 
+// Education & Public Engagement Implementing Organization
+//
+// Written by Mike Mills and Sage Lichtenwalner, Rutgers University
+// Revised 6/5/12
+
+
 /**
-* Instance editor parent object
-*/
+ * Instance editor parent object
+ */
 var tool_instance_editor = function(target_div,name,settings,controls){
 	
 	this.target_div = target_div;
 	
-	this.create_div();
-
   this.name          = name;
   this.configuration = settings;		
   this.controls      = controls.controls;
@@ -16,25 +23,8 @@ var tool_instance_editor = function(target_div,name,settings,controls){
 }
 
 /**
-* Create Div
-* 
-* Create the placeholder div at the instance level.. this replaces the div creation at the tool level
-*/
-tool_instance_editor.prototype.create_div = function(){
-
-	// no need to dynamically create the div for the instance editor
-	$("<div>")
-		.attr("id", this.target_div)
-		.html('<img id="loading_'+ this.target_div + '" src="' + '/img/' + 'loading_a.gif" alt="Loading..."/>')
-		.appendTo('#instance_display');
-
-	console.log("create div " + this.target_div);
-	
-}
-
-/**
-* Initialize
-*/
+ * Initialize
+ */
 tool_instance_editor.prototype.initialize = function(){
 	
 	var instance = this;
@@ -57,12 +47,12 @@ tool_instance_editor.prototype.initialize = function(){
 }
 
 /**
-* Control Overrides
-*
-* override the tool defaults with the instance settings
-* we can not do this in the loader because not all controls always have overrides
-* we only need to update those that are defined in the configuration
-*/
+ * Control Overrides
+ *
+ * override the tool defaults with the instance settings
+ * we can not do this in the loader because not all controls always have overrides
+ * we only need to update those that are defined in the configuration
+ */
 tool_instance_editor.prototype.control_overrides = function(){
 	var instance = this;
 
@@ -73,8 +63,8 @@ tool_instance_editor.prototype.control_overrides = function(){
 }
 
 /**
-* Redraw
-*/
+ * Redraw
+ */
 tool_instance_editor.prototype.redraw = function(){
 	
 	var instance = this;
@@ -89,8 +79,8 @@ tool_instance_editor.prototype.redraw = function(){
 }
 
 /**
-* Load Controls
-*/
+ * Load Controls
+ */
 tool_instance_editor.prototype.load_controls = function(){
 
 	var instance = this;
@@ -115,8 +105,8 @@ tool_instance_editor.prototype.load_controls = function(){
 }
 
 /**
-* Draw Control
-*/
+ * Draw Control
+ */
 tool_instance_editor.prototype.draw_control = function(id, control){
 	
 	var self = this;
@@ -129,7 +119,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 	
 			var lbl = $("<label />")
 				.attr({'for':id}) //'title':control.tooltip
-				.html(control.description);
+				.html(control.label);
 
 			var input = document.createElement("input");
 			$(input)
@@ -150,7 +140,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 
 			var lbl = $("<label />")
 				.attr({'for':id,'title':control.tooltip})
-				.html(control.description);
+				.html(control.label);
 				
 			// create select element and populate it
 			var select = $("<select></select>")
@@ -173,7 +163,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 		
 			var lbl = $("<label />")
 				.attr({'for':id,'title':control.tooltip})
-				.html(control.description);
+				.html(control.label);
 			
 			var input = document.createElement("input");
 			$(input)
@@ -201,7 +191,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 			
 			var el_lbl = $("<label />")
 				.attr({'for':id+"_dp",'title':control.tooltip})
-				.html(control.description);
+				.html(control.label);
 			
 			var el_input = $("<input />")
 				.attr({"id":id,"type":"text"})
@@ -240,7 +230,7 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 			// find the textbox in the control and init colorpicker
 			var el_lbl = $("<label />")
 				.attr({'for':id+"_cp",'title':control.tooltip})
-				.html(control.description);
+				.html(control.label);
 			
 			var el_input = $("<input />")
 				.attr({"id":id,"type":"text"})
@@ -292,8 +282,8 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 }
 
 /**
-* setJSON
-*/
+ * setJSON
+ */
 tool_instance_editor.prototype.setJSON = function(){
 	var instance = this;
 	$('#instance_json_config').val(
@@ -302,8 +292,8 @@ tool_instance_editor.prototype.setJSON = function(){
 }
 
 /**
-* updateJSON
-*/
+ * updateJSON
+ */
 tool_instance_editor.prototype.updateJSON = function(){
 	var instance = this;
 	$.each(instance.controls,function(control){	

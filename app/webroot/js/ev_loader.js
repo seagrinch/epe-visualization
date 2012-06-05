@@ -1,6 +1,11 @@
-// Instance Loader Version 1
+// EPE Visualization Tool Loader
+//
+// Ocean Observatories Initiative 
+// Education & Public Engagement Implementing Organization
+//
+// Written by Mike Mills and Sage Lichtenwalner, Rutgers University
+// Revised 6/5/12
 
-// page loads tool 5
 
 /*
 1. request is made for instance settings
@@ -29,31 +34,23 @@
 */
 
 
+/**
+ * Visualization instance parent object
+ */
 var tool_instance = function(instance_id,target_div){ //   do we want to also pass some security settings here? 
 	
 	// set the instance Id
 	this.id = instance_id;
 	this.target_div = target_div;
 
-	// create the placeholder div at the instance level.. this replaces the div creation at the tool level
-	this.create_div();
-
 	// now populate the too settings with JSON
 	this.get_settings();
 	
 }
 
-tool_instance.prototype.create_div = function(){
-
-	$("<div>")
-		.attr("id", this.target_div)
-		.html('<img id="loading_'+ this.target_div + '" src="' + '/img/' + 'loading_a.gif" alt="Loading..."/>')
-		.appendTo('body');
-
-	console.log("create div " + this.target_div);
-	
-}
-
+/**
+ * Get Settings
+ */
 tool_instance.prototype.get_settings = function(){
 	var self = this;
 
@@ -65,11 +62,12 @@ tool_instance.prototype.get_settings = function(){
 		self.configuration = json.configuration;
 		self.metadata = json.tool;
 		self.name = json.tool.name;
-		
+
 		// now that this is complete, let's grab the associated scripts
 		var url_source = EV_BASE_URL + "files/tools/vistool" + json.tool.id + ".js";
 		console.log("URL Source: " + url_source);
 		
+		// Load the Tool's JavaScript source code
 		$.getScript(url_source, function(script, source_status, source_jsonxhr) {
 	  
 			//console.log(script); //data returned
@@ -88,6 +86,16 @@ tool_instance.prototype.get_settings = function(){
 			console.log(exception);
 		  	console.log(settings);
 		});
+
+		// Load the Tool's CSS
+		var css_source = EV_BASE_URL + "files/tools/vistool" + json.tool.id + ".css";
+		console.log("CSS Source: " + css_source);
+    $(document.createElement('link')).attr({
+        href: css_source,
+        media: 'screen',
+        type: 'text/css',
+        rel: 'stylesheet'
+    }).appendTo('head');
 		
 	});
 	
