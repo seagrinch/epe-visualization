@@ -1,6 +1,6 @@
-<h2><?php echo h($visualization['Visualization']['name']); ?></h2>
 <div class="row">
-  <div class="span4 pull-right">
+  <div class="span4 pull-right well">
+    <h3><?php echo h($visualization['Visualization']['name']); ?></h3>
     <p><?php echo h($visualization['Visualization']['description']); ?></p>
     <p><strong>Tool</strong>: <?php echo $this->Html->link($visualization['VisTool']['name'], array('controller' => 'vis_tools', 'action' => 'view', $visualization['VisTool']['id'])); ?></p>
     <p><strong>Status</strong>: <?php echo ($visualization['Visualization']['is_public']?'Public':'Private'); ?></p>
