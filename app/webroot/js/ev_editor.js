@@ -130,12 +130,36 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 					'title':control.tooltip,
 					'maxlength':typeof(control.maxlength)=="undefined"?"":control.maxlength
 				})
-				.addClass("span2");
+				.change(function(){
+					self.updateJSON()
+				});
 
 			ctrl = $("<div></div>").addClass("control").append(lbl).append(input);
 			
 			break;
 		
+		case "textarea":
+	
+			var lbl = $("<label />")
+				.attr({'for':id})
+				.html(control.label);
+
+			var textarea = document.createElement("textarea");
+			$(textarea)
+				.attr({
+					'id':id,
+					'type':'textarea',
+					'value':control.default_value,
+					'title':control.tooltip,
+				})
+				.change(function(){
+					self.updateJSON()
+				});
+
+			ctrl = $("<div></div>").addClass("control").append(lbl).append(textarea);
+			
+			break;
+
 		case "dropdown":
 
 			var lbl = $("<label />")
@@ -144,7 +168,6 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 				
 			// create select element and populate it
 			var select = $("<select></select>")
-				.addClass("span2")
 				.attr({"id":id})
 				.change(function(){
 					self.updateJSON()
@@ -154,7 +177,8 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 				opt = control.options[option];	
 				$(select).append($('<option></option>').val(opt.value).html(opt.name));
 			});
-			
+			$(select).val(control.default_value);
+
 			ctrl = $("<div></div>").addClass("control").append(lbl).append(select);
 		
 			break;
@@ -196,7 +220,10 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 			var el_input = $("<input />")
 				.attr({"id":id,"type":"text"})
 				.addClass("readonly span2")
-				.val(control.default_value);
+				.val(control.default_value)
+				.change(function(){
+					self.updateJSON()
+				});
 				
 			var el_i = $("<i></i>").css("background-color",control.default_value);
 			var el_span = $("<span></span>").addClass("add-on").append(el_i);
@@ -235,7 +262,10 @@ tool_instance_editor.prototype.draw_control = function(id, control){
 			var el_input = $("<input />")
 				.attr({"id":id,"type":"text"})
 				.addClass("readonly span2")
-				.val(control.default_value);
+				.val(control.default_value)
+				.change(function(){
+					self.updateJSON()
+				});
 				
 			var el_i = $("<i></i>").css("background-color",control.default_value);
 			var el_span = $("<span></span>").addClass("add-on").append(el_i);
