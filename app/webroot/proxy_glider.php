@@ -189,6 +189,7 @@ function makeExceptionReport($exceptions) {
 // -----------------------------------------------
 // Begin Main Script
 // -----------------------------------------------
+header("Access-Control-Allow-Origin: *"); //Allow access from any server
 
 require_once('../Config/database.php');  //Database connection info is stored as an array following CakePHP convention
 $db = new DATABASE_CONFIG();

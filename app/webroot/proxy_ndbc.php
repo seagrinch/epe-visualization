@@ -130,6 +130,8 @@ function is_url_allowed($allowedServers, $url) {
  * MAIN SCRIPT 
  */
 
+header("Access-Control-Allow-Origin: *"); //Allow access from any server
+
 // first check if file exists, if not continue on
   $targetUrl = $_SERVER['QUERY_STRING'];
 
