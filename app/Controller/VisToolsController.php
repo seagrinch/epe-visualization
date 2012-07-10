@@ -151,6 +151,8 @@ class VisToolsController extends AppController {
 		}
 		$this->set('visTool', $this->VisTool->read(null, $id));
 	  $this->layout = 'ajax';
+	  $this->response->type('text/javascript');
+    $this->response->header('Access-Control-Allow-Origin: *');
 	}
 
 }

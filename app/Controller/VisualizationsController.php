@@ -181,6 +181,7 @@ class VisualizationsController extends AppController {
 		$this->set('visualization', $this->Visualization->read(null, $id));
 	  $this->layout = 'ajax';
 	  $this->response->type('text/javascript');
+    $this->response->header('Access-Control-Allow-Origin: *');
 	}  
   
 }
