@@ -16,7 +16,6 @@
     <h3>Example tool with default settings</h3>
     <div id="chart"></div>
       <?php echo $this->Html->script('d3.v2.min'); ?>
-      <?php echo $this->Html->scriptBlock('var EV_BASE_URL="' . $this->Html->url( '/', true ) . '";'); ?>
       <?php echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css'); ?>
     <script>
