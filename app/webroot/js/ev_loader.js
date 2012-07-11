@@ -37,12 +37,13 @@
 /**
  * Visualization instance parent object
  */
-var tool_instance = function(instance_id,target_div){ //   do we want to also pass some security settings here? 
+var tool_instance = function(instance_id,target_div,url_base){ //   do we want to also pass some security settings here? 
 	
 	// set the instance Id
 	this.id = instance_id;
 	this.target_div = target_div;
-
+	this.url_base = (typeof(url_base)!=='undefined') ? url_base : 'http://epe.marine.rutgers.edu/visualization/';
+  
 	// now populate the too settings with JSON
 	this.get_settings();
 	
@@ -54,7 +55,7 @@ var tool_instance = function(instance_id,target_div){ //   do we want to also pa
 tool_instance.prototype.get_settings = function(){
 	var self = this;
 
-	var url_instance_config = "http://epe.marine.rutgers.edu/visualization/visualizations/settings/" + self.id + ".js";
+	var url_instance_config = self.url_base + "visualizations/settings/" + self.id + ".js";
 	console.log(url_instance_config);
 	
 	// request the configuration settings as json
@@ -64,7 +65,7 @@ tool_instance.prototype.get_settings = function(){
 		self.name = json.tool.name;
 
 		// now that this is complete, let's grab the associated scripts
-		var url_source = "http://epe.marine.rutgers.edu/visualization/files/tools/vistool" + json.tool.id + ".js";
+		var url_source = self.url_base + "files/tools/vistool" + json.tool.id + ".js";
 		console.log("URL Source: " + url_source);
 		
 		// Load the Tool's JavaScript source code
@@ -88,7 +89,7 @@ tool_instance.prototype.get_settings = function(){
 		});
 
 		// Load the Tool's CSS
-		var css_source = "http://epe.marine.rutgers.edu/visualization/files/tools/vistool" + json.tool.id + ".css";
+		var css_source = self.url_base + "files/tools/vistool" + json.tool.id + ".css";
 		console.log("CSS Source: " + css_source);
     $(document.createElement('link')).attr({
         href: css_source,

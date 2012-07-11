@@ -20,7 +20,7 @@
       <?php echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css'); ?>
     <script>
       self.tool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
-      var b = new self.tool('chart', '');
+      var b = new self.tool('chart', '', "<?php echo $this->Html->url( '/', true )?>" );
     </script>
   </div>
 </div>
