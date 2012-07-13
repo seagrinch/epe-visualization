@@ -72,7 +72,7 @@ ToolEditor.prototype.load_controls = function(div_control){
 ToolEditor.prototype.redraw = function(){
 	var instance = this;
 	// remove children of the display window, which will clear all existing charts
-	$('#'+instance.target_div).children().remove();
+	$('#'+instance.div_vis).children().remove();
 	// reinitalize the instance of the tool, loading the UPDATED instance configuration
 	instance.tool_instance = new instance.vistool(instance.div_vis,instance.tool_instance.configuration);
 	return false;
