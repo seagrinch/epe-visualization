@@ -19,8 +19,8 @@
       <?php echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css'); ?>
     <script>
-      self.tool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
-      var b = new self.tool('chart', '', "<?php echo $this->Html->url( '/', true )?>" );
+      vistool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
+      var tool_instance = new vistool('chart', '');
     </script>
   </div>
 </div>

@@ -1,1 +1,0 @@
-<?php echo $visTool['VisTool']['config_code']; ?>

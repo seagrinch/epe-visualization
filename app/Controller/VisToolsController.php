@@ -138,21 +138,4 @@ class VisToolsController extends AppController {
 		$this->redirect(array('action' => 'index','admin'=>false));
 	}
 	
-/**
- * settings method
- *
- * @param string $id
- * @return void
- */
-	public function settings($id = null) {
-		$this->VisTool->id = $id;
-		if (!$this->VisTool->exists()) {
-			throw new NotFoundException(__('Invalid vis tool'));
-		}
-		$this->set('visTool', $this->VisTool->read(null, $id));
-	  $this->layout = 'ajax';
-	  $this->response->type('text/javascript');
-    $this->response->header('Access-Control-Allow-Origin: *');
-	}
-
 }

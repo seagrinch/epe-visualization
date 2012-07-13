@@ -25,10 +25,13 @@
       <p>&nbsp;</p>
       <p><?php 
       if (isset($this->data['Visualization']['id'])) {
-        echo $this->Html->link('Cancel',array('action'=>'view',$this->data['Visualization']['id']),array('class'=>'btn')); ?> <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary'));
+        // Visualization is being copied - Cancel returns to previous visualization
+        echo $this->Html->link('Cancel',array('action'=>'view',$this->data['Visualization']['id']),array('class'=>'btn'));
       } else {
-      echo $this->Html->link('Cancel',array('controller'=>'vis_tools','action'=>'view',$this->data['VisTool']['id']),array('class'=>'btn')); ?> <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary'));
-      }?></p>
+        // Visualization is brand new - Cancel returns to tool
+        echo $this->Html->link('Cancel',array('controller'=>'vis_tools','action'=>'view',$this->data['VisTool']['id']),array('class'=>'btn'));
+      } ?>
+      <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary','onclick'=>"vistool.setJSON('instance_json_config');"));?></p>
     </div> <!-- tabbable -->
     <?php echo $this->Form->end();?>
   </div> <!-- span4 -->
@@ -36,14 +39,13 @@
   <div class="span8">
     <div id="chart"></div>
       <?php echo $this->Html->script('d3.v2.min'); ?>
-      <?php echo $this->Html->script('jquery.json-2.3.min'); ?>
+      <?php echo $this->Html->script('jquery.json-2.3.min'); // Required for ev_editor ?>
       <?php echo $this->Html->script('ev_editor'); ?>
       <?php echo $this->Html->script('/files/tools/vistool' . $this->data['VisTool']['id'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/vistool' . $this->data['VisTool']['id'] . '.css'); ?>
       <script type="text/javascript">
         var settings = <?php echo (isset($this->data['Visualization']['config_settings']) ? $this->data['Visualization']['config_settings'] : '{}'); ?>;
-        var controls = <?php echo $this->data['VisTool']['config_code']; ?>;
-        var tool = new tool_instance_editor("chart","<?php echo $this->data['VisTool']['function_name']; ?>",settings,controls);
+        var vistool = new ToolEditor("<?php echo $this->data['VisTool']['function_name']?>","chart",settings,"tool_controls");
       </script>
   </div>
 </div>

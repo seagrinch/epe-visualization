@@ -21,7 +21,7 @@
     <?php echo $this->Html->script('d3.v2.min'); ?>
     <?php echo $this->Html->script('ev_loader'); ?>
     <script>
-      var tool = new tool_instance(<?php echo $visualization['Visualization']['id']; ?>, "chart", "<?php echo $this->Html->url( '/', true )?>" );
+      var vistool = new ToolLoader("<?php echo $this->Html->url(array('action'=>'settings',$visualization['Visualization']['id'])) ?>","chart");
     </script>
   </div>
 </div>
