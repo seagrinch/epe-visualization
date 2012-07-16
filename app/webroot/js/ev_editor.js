@@ -166,31 +166,25 @@ ToolEditor.prototype.draw_control = function(id, control, value){
 			break;
 		
 		case "datepicker":
-			var el_lbl = $("<label />")
-				.attr({'for':id+"_dp",'title':control.tooltip})
-				.html(control.label);
-			var el_input = $("<input />")
-				.attr({"id":id,"type":"text"})
-				.addClass("readonly span2")
-				.val(control.default_value)
-				.change(function(){
-					self.update_config()
-				});
-			var el_i = $("<i></i>").css("background-color",control.default_value);
-			var el_span = $("<span></span>").addClass("add-on").append(el_i);
-			var el_div = $("<div></div>")
-				.addClass("input-append date")
-				.attr({"id":id+"_cp","data-date":control.default_value,"data-date-format":"yyyy-mm-dd"})
-				.append(el_input)
-				.append(el_span);
-			$(el_div).datepicker()
-			 .on("changeDate",function(dp){	
- 				self.update_config();			
- 			});
-			ctrl = $("<div></div>")
-					.addClass("control ctlhandle")
-					.append(el_lbl)
-					.append(el_div);
+      var el_lbl = $("<label />").attr({
+        'for': id + "_dp",
+        'title': control.tooltip
+      }).html(control.label);
+      var el_input = $("<input />").attr({
+        "id": id,
+        "type": "text"
+      }).addClass("datepicker").val(control.default_value).on("change", function () {
+        self.update_config();
+      });
+      $(el_input).datepicker({
+        "dateFormat": "yy-mm-dd",
+        changeMonth: true,
+        changeYear: true,
+        showButtonPanel: true
+      }).on("changeDate", function (dp) {
+        self.update_config();
+      });
+      ctrl = $("<div></div>").addClass("control ctlhandle").append(el_lbl).append(el_input);
 			break;
 			
 		case "colorpicker":

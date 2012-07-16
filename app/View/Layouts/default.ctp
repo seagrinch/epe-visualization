@@ -11,7 +11,8 @@
     <?php
 		echo $this->Html->css('bootstrap.min');
 		echo $this->Html->css('colorpicker');
-		echo $this->Html->css('datepicker');
+		//echo $this->Html->css('datepicker');
+		echo $this->Html->css('start/jquery-ui-1.8.21.custom');
     ?>
     <style type="text/css">
       body {
@@ -33,7 +34,8 @@
 		echo $this->Html->meta('icon');
     echo $this->Html->script('bootstrap');
     echo $this->Html->script('bootstrap-colorpicker');
-    echo $this->Html->script('bootstrap-datepicker');
+    //echo $this->Html->script('bootstrap-datepicker');
+    echo $this->Html->script('jquery-ui-1.8.21.custom.min');
 
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
