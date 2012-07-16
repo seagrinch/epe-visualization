@@ -79,6 +79,18 @@ ToolEditor.prototype.redraw = function(){
 }
 
 /**
+ * Reset Tool
+ */
+ToolEditor.prototype.reset = function(){
+	var instance = this;
+	$('#'+instance.div_vis).children().remove();
+	$('#'+instance.div_control).children().remove();
+	instance.configuration = {};
+	instance.initialize();
+	return false;
+}
+
+/**
  * Draw Control
  */
 ToolEditor.prototype.draw_control = function(id, control, value){

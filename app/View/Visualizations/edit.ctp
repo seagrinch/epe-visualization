@@ -24,6 +24,7 @@
       </div> <!-- tab-content-->
       <p>&nbsp;</p>
       <p><?php echo $this->Html->link('Cancel',array('action'=>'view',$this->data['Visualization']['id']),array('class'=>'btn')); ?> 
+        <?php echo $this->Form->button('Reset Tool',array('class'=>'btn','type'=>'button','onclick'=>"vistool.reset();"));?>
         <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary','onclick'=>"vistool.setJSON('instance_json_config');"));?></p>
     </div> <!-- tabbable -->
     <?php echo $this->Form->end();?>

@@ -31,7 +31,8 @@
         // Visualization is brand new - Cancel returns to tool
         echo $this->Html->link('Cancel',array('controller'=>'vis_tools','action'=>'view',$this->data['VisTool']['id']),array('class'=>'btn'));
       } ?>
-      <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary','onclick'=>"vistool.setJSON('instance_json_config');"));?></p>
+        <?php echo $this->Form->button('Reset Tool',array('class'=>'btn','type'=>'button','onclick'=>"vistool.reset();"));?>
+        <?php echo $this->Form->button('Save',array('class'=>'btn btn-primary','onclick'=>"vistool.setJSON('instance_json_config');"));?></p>
     </div> <!-- tabbable -->
     <?php echo $this->Form->end();?>
   </div> <!-- span4 -->
