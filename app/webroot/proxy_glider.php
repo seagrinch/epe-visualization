@@ -133,7 +133,8 @@ function getCast($deployment_id,$profile_id){
     sea_water_temperature,sea_water_salinity,sea_water_density,sci_bb3slo_b470_scaled,
     sci_bb3slo_b532_scaled,sci_bb3slo_b660_scaled,sci_bbfl2s_cdom_scaled,sci_bbfl2s_chlor_scaled,profile_id,direction 
     FROM cast_data 
-    WHERE deployment_id='$deployment_id' AND profile_id='$profile_id'";
+    WHERE deployment_id='$deployment_id' AND profile_id='$profile_id'
+    ORDER BY depth";
   if ($result = $mysqli->query($sql)) {
     while ($row = $result->fetch_assoc()) {
       $data['obs'][] = array('deployment_id'=>$row['deployment_id'], 'obsdate'=>$row['obsdate'], 'depth'=>$row['depth'], 
