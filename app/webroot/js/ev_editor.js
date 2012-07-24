@@ -74,7 +74,7 @@ ToolEditor.prototype.redraw = function(){
 	// remove children of the display window, which will clear all existing charts
 	$('#'+instance.div_vis).children().remove();
 	// reinitalize the instance of the tool, loading the UPDATED instance configuration
-	instance.tool_instance = new instance.vistool(instance.div_vis,instance.tool_instance.configuration);
+	instance.tool_instance = new instance.vistool(instance.div_vis,instance.tool_instance.tool.configuration.custom);
 	return false;
 }
 
@@ -129,7 +129,8 @@ ToolEditor.prototype.draw_control = function(id, control, value){
 					'id':id,
 					'type':'textarea',
 					'value':control.default_value,
-					'title':control.tooltip,
+					//'title':control.tooltip,
+					'rows':5
 				})
 				.change(function(){
 					self.update_config()
@@ -223,7 +224,7 @@ ToolEditor.prototype.draw_control = function(id, control, value){
 				.append(el_input)
 				.append(el_span)
 			$(el_div).colorpicker().on("changeColor",function(cp){
-				$("#"+id).val(self.tool_instance.configuration[id] = cp.color.toHex())	
+				$("#"+id).val(self.tool_instance.tool.configuration.custom[id] = cp.color.toHex())	
 				self.update_config();			
 			});
 			ctrl = $("<div></div>")
@@ -253,7 +254,7 @@ ToolEditor.prototype.update_config = function(){
 	var instance = this;
   console.log('Updating Settings');
 	$.each(instance.tool_instance.controls,function(control){	
-    instance.tool_instance.configuration[control] = $('#'+control).val();
+    instance.tool_instance.tool.configuration.custom[control] = $('#'+control).val();
 	});
 }
 
@@ -263,7 +264,7 @@ ToolEditor.prototype.update_config = function(){
 ToolEditor.prototype.setJSON = function(div_id){
 	var instance = this;
 	$('#' + div_id).val(
-		$.toJSON(instance.tool_instance.configuration)
+		$.toJSON(instance.tool_instance.tool.configuration.custom)
 	);
 	console.log('JSON Updated');
 	return false;
