@@ -10,13 +10,6 @@ class VisToolsController extends AppController {
   public $uses = array('VisTool','Visualization');
   public $components = array('ImageTool');
 
-  public $paginate = array(
-      'limit' => 10,
-      'order' => array(
-          'VisTool.id' => 'asc'
-      )
-  );
-
 /**
  * beforeFilter
  */
@@ -27,17 +20,23 @@ class VisToolsController extends AppController {
 
 
 /**
- * index method
+ * Listing of visualization tools 
  *
  * @return void
  */
 	public function index() {
-		$this->VisTool->recursive = 0;
+		$this->paginate = array(
+		  'recursive' => 0,
+	  	'conditions'=>array('VisTool.status'=>'Published'),
+      'limit' => 10,
+      'order' => array(
+          'VisTool.created' => 'asc'
+      ));
 		$this->set('visTools', $this->paginate());
 	}
 
 /**
- * view method
+ * View the selected visualization tool 
  *
  * @param string $id
  * @return void
@@ -47,18 +46,43 @@ class VisToolsController extends AppController {
 		if (!$this->VisTool->exists()) {
 			throw new NotFoundException(__('Invalid vis tool'));
 		}
+    if ($this->VisTool->field('status')=='Draft' & !($this->Auth->user('is_admin'))) {
+			throw new NotFoundException(__('Draft Visualization'));      
+    }
     $this->VisTool->Visualization->unbindModel(
         array('belongsTo' => array('VisTool'))
     );
     $this->set('visTool', $this->VisTool->find('first',array('conditions'=>array('id'=>$id),'recursive'=>0)));
-    $this->set('instances', $this->Visualization->find('all',array(
-      'conditions'=>array('Visualization.vis_tool_id'=>$id,'Visualization.is_public'=>1),
-      'recursive'=>0,
-      'fields'=>array('Visualization.id','Visualization.name','Visualization.description','User.name'))));
+    $this->paginate = array(
+	  	'conditions'=>array('Visualization.vis_tool_id'=>$id,'Visualization.is_public'=>1),
+		  'recursive' => 0,
+		  'fields'=>array('Visualization.id','Visualization.name','Visualization.description','User.name'),
+      'limit' => 5,
+      'order' => array(
+          'VisTool.created' => 'asc'
+      ));
+		$this->set('instances', $this->paginate('Visualization'));
 	}
 
+
 /**
- * add method
+ * Admin listing of visualization tools 
+ *
+ * @return void
+ */
+	public function admin_index() {
+		$this->paginate = array(
+		  'recursive' => 0,
+      'limit' => 25,
+      'order' => array(
+          'VisTool.created' => 'asc'
+      ));
+		$this->set('visTools', $this->paginate());
+	}
+
+
+/**
+ * Admin add a new visualization tool 
  *
  * @return void
  */
@@ -75,7 +99,7 @@ class VisToolsController extends AppController {
 	}
 
 /**
- * edit method
+ * Admin edit and existing visualization tool
  *
  * @param string $id
  * @return void
@@ -116,7 +140,7 @@ class VisToolsController extends AppController {
 	}
 
 /**
- * delete method
+ * Admin delete a visualization tool
  *
  * @param string $id
  * @return void

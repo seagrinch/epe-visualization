@@ -92,6 +92,7 @@
                   <li><?php echo $this->Html->link('User Management','/admin/users')?></li>
                   <li class="divider"></li>
                   <li><?php echo $this->Html->link('New Visualization Tool','/admin/vis_tools/add')?></li>
+                  <li><?php echo $this->Html->link('Visualization Tool List','/admin/vis_tools/index')?></li>
                 </ul>
               </li>
               <?php } ?>

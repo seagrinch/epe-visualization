@@ -1,5 +1,5 @@
-<h2>Upload a New Visualization Tool</h2>
-  <p>This page is for system administrators to add new visualizations tools to the system with accompanying source code.  Note, this page will <strong>not</strong> be available to regular users.</p>
+<h2>Create a New Visualization Tool</h2>
+  <p>This page allows system administrators to begin adding new visualizations tools to the site, incluidng uploading necessary source code.  This page will <strong>not</strong> be available to regular users.</p>
 
 <?php echo $this->Form->create('VisTool', array('class'=>'well form-horizontal'));?>
 	<fieldset>

@@ -14,7 +14,8 @@
       ?>    
       <h5><?php echo $this->Html->link($visTool['VisTool']['name'], array('action' => 'view', $visTool['VisTool']['id'])); ?></h5>
       <p><?php echo h($visTool['VisTool']['description']); ?></p>
-		  <p><small>Tool Type: <?php echo h($visTool['VisTool']['tool_type']); ?></small></p>
+		  <p><small>Tool Type: <?php echo h($visTool['VisTool']['tool_type']); ?></small><br/>
+		    <small>Added <?php App::uses('CakeTime', 'Utility'); echo CakeTime::format('F Y', $visTool['VisTool']['created'], true); ?></small></p>
     </div>
   </li>
   <?php endforeach; ?>
