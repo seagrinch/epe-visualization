@@ -13,6 +13,7 @@
     </script>
   </div>
   <div class="span4 well">
+		<h3>Tool Information</h3>
     <p><?php echo h($visTool['VisTool']['description']); ?></p>
     <p><strong>Version</strong>: <?php echo h($visTool['VisTool']['version']); ?><br/>
       <strong>Tool Type</strong>: <?php echo h($visTool['VisTool']['tool_type']); ?><br/>
@@ -24,6 +25,12 @@
 		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> </p>
 		<?php } ?> 
   </div>
+  <?php if ($visTool['VisTool']['help']) {?>
+  <div class="span4 well">
+		<h3>Tool Instructions</h3>
+		<?php echo h($visTool['VisTool']['help']); ?></p>
+  </div>
+  <?php } ?>
 </div>
 <div class="row-fluid">
   <div class="span8">
