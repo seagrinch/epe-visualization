@@ -1,2 +1,3 @@
 <h1>About this Site</h1>
 <p>This site was developed as part of the National Scinece Foundations's Ocean Observatories Initiative (OOI).  It is being developed by the Education and Public Engagement (EPE) Implementing Organization lead by Rutgers Unviersity, and supported by the University of Maine and Raytheon Web Solutions.</p>
+<p>For more information about EPE, please visit the <a href="http://www.oceanobservatories.org/infrastructure/ooi-components/education-public-engagement/"> OOI Website <i class="icon-globe"></i></a>

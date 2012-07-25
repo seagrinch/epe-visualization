@@ -30,9 +30,14 @@ class VisToolsController extends AppController {
 	  	'conditions'=>array('VisTool.status'=>'Published'),
       'limit' => 10,
       'order' => array(
-          'VisTool.created' => 'asc'
+          'VisTool.created' => 'desc'
       ));
-		$this->set('visTools', $this->paginate());
+		$visTools = $this->paginate();
+		if ($this->request->is('requested')) {
+		  return $visTools;
+    } else {
+      $this->set('visTools', $visTools);
+    }
 	}
 
 /**

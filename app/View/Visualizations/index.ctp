@@ -12,9 +12,9 @@
 	foreach ($visualizations as $visualization): ?>
 	<tr>
 		<td><?php echo h($visualization['Visualization']['id']); ?>&nbsp;</td>
-		<td><?php echo $this->Html->link($visualization['Visualization']['name'], array('action' => 'view', $visualization['Visualization']['id'])); ?>&nbsp;</td>
+		<td><?php echo $this->Html->link('<i class="icon-signal"></i> ' . $visualization['Visualization']['name'], array('action' => 'view', $visualization['Visualization']['id']),array('escape'=>false)); ?>&nbsp;</td>
 		<td>
-			<?php echo $this->Html->link($visualization['VisTool']['name'], array('controller' => 'vis_tools', 'action' => 'view', $visualization['VisTool']['id'])); ?>
+			<?php echo $this->Html->link('<i class="icon-wrench"></i>', array('controller' => 'vis_tools', 'action' => 'view', $visualization['VisTool']['id']),array('escape'=>false)); ?> <?php echo $visualization['VisTool']['name']?>
 		</td>
 		<td>
 			<?php echo $this->Html->link($visualization['User']['name'], array('controller' => 'users', 'action' => 'view', $visualization['User']['id'])); ?>

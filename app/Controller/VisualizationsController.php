@@ -32,8 +32,13 @@ class VisualizationsController extends AppController {
  * @return void
  */
 	public function index() {
-		$this->paginate = array_merge($this->paginate,array('conditions'=>array('Visualization.is_public'=>1)));
-		$this->set('visualizations', $this->paginate());
+		$this->paginate = array_merge($this->paginate,array('conditions'=>array('Visualization.is_public'=>2)));
+		$visualizations = $this->paginate();
+		if ($this->request->is('requested')) {
+		  return $visualizations;
+    } else {
+      $this->set('visualizations', $visualizations);
+    }
 	}
 	
 /**
