@@ -1,10 +1,12 @@
 <div class="row-fluid">
   <div class="span8">
-    <h3><?php echo h($visTool['VisTool']['name']); ?> - Example tool with default settings</h3>
+    <div class="page-header">
+        <h1><?php echo h($visTool['VisTool']['name']); ?> <small>Example tool with default settings</small></h1>
+    </div>
     <div id="chart"></div>
       <?php echo $this->Html->script('d3.v2.min'); ?>
-      <?php echo $this->Html->script('/files/tools/vistool' . $visTool['VisTool']['id'] . '.js'); ?>
-      <?php echo $this->Html->css('/files/tools/vistool' . $visTool['VisTool']['id'] . '.css'); ?>
+      <?php echo $this->Html->script('/files/tools/' . $visTool['VisTool']['function_name'] . '.js'); ?>
+      <?php echo $this->Html->css('/files/tools/' . $visTool['VisTool']['function_name'] . '.css'); ?>
     <script>
       vistool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
       var tool_instance = new vistool('chart', '');

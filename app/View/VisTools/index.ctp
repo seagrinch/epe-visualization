@@ -5,7 +5,7 @@
   <li class="span3">
     <div class="thumbnail">
     <?php 
-      $imgfile = '/files/tools/vistool' . $visTool['VisTool']['id'] . '.jpg';
+      $imgfile = '/files/tools/' . $visTool['VisTool']['function_name'] . '.jpg';
       if (is_file(WWW_ROOT . $imgfile)) {
         echo $this->Html->link($this->Html->image($imgfile), array('action' => 'view', $visTool['VisTool']['id']),array('escape'=>false)); 
       } else {

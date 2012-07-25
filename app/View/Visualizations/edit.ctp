@@ -40,8 +40,8 @@
       <?php echo $this->Html->script('d3.v2.min'); ?>
       <?php echo $this->Html->script('jquery.json-2.3.min'); // Required for ev_editor ?>
       <?php echo $this->Html->script('ev_editor'); ?>
-      <?php echo $this->Html->script('/files/tools/vistool' . $vistool['VisTool']['id'] . '.js'); ?>
-      <?php echo $this->Html->css('/files/tools/vistool' . $vistool['VisTool']['id'] . '.css'); ?>
+      <?php echo $this->Html->script('/files/tools/' . $vistool['VisTool']['function_name'] . '.js'); ?>
+      <?php echo $this->Html->css('/files/tools/' . $vistool['VisTool']['function_name'] . '.css'); ?>
       <script type="text/javascript">
         var settings = <?php echo (isset($this->data['Visualization']['config_settings']) ? $this->data['Visualization']['config_settings'] : '{}'); ?>;
         var vistool = new ToolEditor("<?php echo $vistool['VisTool']['function_name']?>","chart",settings,"tool_controls");

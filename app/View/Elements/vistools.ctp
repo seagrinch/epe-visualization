@@ -3,7 +3,7 @@
 <?php foreach ($visTools as $visTool): ?>
   <li class="span2">
     <?php 
-      $imgfile = '/files/tools/vistool' . $visTool['VisTool']['id'] . '.jpg';
+      $imgfile = '/files/tools/' . $visTool['VisTool']['function_name'] . '.jpg';
       if (is_file(WWW_ROOT . $imgfile)) {
         $img = $this->Html->image($imgfile);
       } else {

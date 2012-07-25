@@ -108,6 +108,7 @@ class VisToolsController extends AppController {
  *
  * @param string $id
  * @return void
+ * @todo Need to move files when function_name is changed
  */
 	public function admin_edit($id = null) {
 		$this->VisTool->id = $id;
@@ -118,16 +119,16 @@ class VisToolsController extends AppController {
 			if ($this->VisTool->save($this->request->data)) {		
         if (is_uploaded_file($this->data['VisTool']['file_source']['tmp_name'])) {
           move_uploaded_file($this->data['VisTool']['file_source']['tmp_name'], 
-            WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.js');
+            WWW_ROOT . 'files/tools/' . $this->data['VisTool']['function_name'] . '.js');
         }
         if (is_uploaded_file($this->data['VisTool']['file_css']['tmp_name'])) {
           move_uploaded_file($this->data['VisTool']['file_css']['tmp_name'], 
-            WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.css');
+            WWW_ROOT . 'files/tools/' . $this->data['VisTool']['function_name'] . '.css');
         }
         if (is_uploaded_file($this->data['VisTool']['file_thumbnail']['tmp_name'])) {
           $status = $this->ImageTool->resize(array(
             'input' => $this->data['VisTool']['file_thumbnail']['tmp_name'],
-            'output' => WWW_ROOT . 'files/tools/vistool' . $this->data['VisTool']['id'] . '.jpg',
+            'output' => WWW_ROOT . 'files/tools/' . $this->data['VisTool']['function_name'] . '.jpg',
             'width' => 260,
             'height' => 180,
             'keepRatio' => true,

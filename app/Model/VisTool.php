@@ -22,6 +22,16 @@ class VisTool extends AppModel {
 				//'on' => 'create', // Limit validation to 'create' or 'update' operations
 			),
 		),
+		'function_name' => array(
+			'notEmpty' => array(
+				'rule' => array('notEmpty'),
+				'message' => 'This field cannot be empty',
+			),
+			'unique' => array(
+				'rule' => array('isUnique'),
+				'message' => 'This function name is already in use.',
+			),
+		),
     'file_source' => array(
       'checkSize' => array(
         'rule' => array('checkSize',false),
