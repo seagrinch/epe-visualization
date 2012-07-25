@@ -91,4 +91,13 @@ class Visualization extends AppModel {
     return $this->field('id', array('id' => $id, 'user_id' => $user)) === $id;
   }
 
+  public function findvis($id) {
+    return $this->find('first',array('recursive'=>0,'conditions'=>array('Visualization.id'=>$id),'fields'=>array('id','name','description','inquiry_questions','is_public','config_settings','Provenance.id','Provenance.name','vis_tool_id','VisTool.id','VisTool.name','VisTool.function_name','user_id','User.id','User.name','User.username')));
+  }
+  
+  public function savevis($data) {
+     return $this->save($data,true,array('name','description','is_public','config_settings','user_id','vis_tool_id','provenance_id'));
+  }
+
+
 }

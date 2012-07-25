@@ -66,7 +66,7 @@ class VisualizationsController extends AppController {
     if (!($this->Visualization->field('is_public')) & ($this->Visualization->field('user_id') != $this->Auth->user('id'))) {
 			throw new NotFoundException(__('Private Visualization'));      
     }
-		$this->set('visualization', $this->Visualization->read(null, $id));
+		$this->set('visualization', $this->Visualization->findvis($id));
 	}
 
 /**
@@ -78,8 +78,7 @@ class VisualizationsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
   		$this->request->data['Visualization']['user_id'] = $this->Auth->user('id');
   	  $this->request->data['Visualization']['vis_tool_id'] = $tid;
-			if ($this->Visualization->save($this->request->data,true,
-			  array('name','description','is_public','config_settings','user_id','vis_tool_id'))) {
+			if ($this->Visualization->savevis($this->request->data)) {
   		  $this->Session->setFlash('Your custom visualization was created.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-success'));
   			$this->redirect(array('action' => 'view', $this->Visualization->id));
   		} else {
@@ -91,7 +90,8 @@ class VisualizationsController extends AppController {
   		throw new NotFoundException(__('Invalid Tool'));
   	}
   	$this->VisTool->recursive = -1;
-	  $this->request->data = array_merge($this->VisTool->read(null, $tid), $this->request->data);
+  	$this->set('vistool',$this->VisTool->find('first',array('recursive'=>0,'conditions'=>array('id'=>$tid))));
+//	  $this->request->data = array_merge($this->VisTool->read(null, $tid), $this->request->data);
 	}
 
 /**
@@ -103,12 +103,11 @@ class VisualizationsController extends AppController {
 		if ($this->request->is('post') || $this->request->is('put')) {
   		$this->request->data['Visualization']['user_id'] = $this->Auth->user('id');
   		$this->request->data['Visualization']['provenance_id'] = $id;
-			if ($this->Visualization->save($this->request->data,true,
-			  array('name','description','is_public','config_settings','user_id','provenance_id','vis_tool_id'))) {
+			if ($this->Visualization->savevis($this->request->data)) {
   		  $this->Session->setFlash('Your custom visualization was created.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-success'));
   			$this->redirect(array('action' => 'view', $this->Visualization->id));
   		} else {
-  		$this->Session->setFlash('Your custom visualization could not be created. Please, try again.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-error'));
+  		$this->Session->setFlash('Your custom visualization could not be created. Please, try again.' . print_r($this->Visualization->validationErrors),'alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-error'));
   			$this->request->data['Visualization']['id'] = $id;	
   		}
     }
@@ -116,7 +115,8 @@ class VisualizationsController extends AppController {
 		if (!$this->Visualization->exists()) {
   		throw new NotFoundException(__('Invalid Visualization'));
   	}
-	  $this->request->data = array_merge($this->Visualization->read(null, $id), $this->request->data);
+  	$this->set('vistool',$this->VisTool->find('first',array('recursive'=>0,'conditions'=>array('id'=>$this->Visualization->field('vis_tool_id')))));
+	  $this->request->data = array_merge($this->Visualization->findvis($id), $this->request->data);
 	  $this->render('create');
   }
 
@@ -137,20 +137,21 @@ class VisualizationsController extends AppController {
 		}
 		if ($this->request->is('post') || $this->request->is('put')) {
       if ($this->Visualization->isOwnedBy($this->request->data['Visualization']['id'], $this->Auth->user('id') )) {
-  			if ($this->Visualization->save($this->request->data,true,array('name','description','is_public','config_settings'))) {
+  			if ($this->Visualization->savevis($this->request->data)) {
   				$this->Session->setFlash('Changes to your custom visualization have been saved.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-success'));
   				$this->redirect(array('action' => 'view', $id));
   			} else {
   				$this->Session->setFlash('Your custom visualization could not be saved. Please, try again.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-error'));
-    			$this->request->data = array_merge($this->Visualization->read(null, $id), $this->request->data);
+    			$this->request->data = array_merge($this->Visualization->findvis($id), $this->request->data);
   			}
       } else {
     		$this->Session->setFlash('You can not edit that visualization.','alert',array('plugin' => 'TwitterBootstrap','class'=>'alert-error'));
   		  $this->redirect('personal');
       }  
 		} else {
-			$this->request->data = $this->Visualization->read(null, $id);
+			$this->request->data = $this->Visualization->findvis($id);
 		}
+  	$this->set('vistool',$this->VisTool->find('first',array('recursive'=>0,'conditions'=>array('id'=>$this->Visualization->field('vis_tool_id')))));
 	}
 
 
@@ -183,7 +184,7 @@ class VisualizationsController extends AppController {
 		if (!$this->Visualization->exists()) {
 			throw new NotFoundException(__('Invalid Visualization'));
 		}
-		$this->set('visualization', $this->Visualization->read(null, $id));
+		$this->set('visualization', $this->Visualization->findvis($id));
 	  $this->layout = 'ajax';
 	  $this->response->type('text/javascript');
     $this->response->header('Access-Control-Allow-Origin: *');
