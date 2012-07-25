@@ -90,7 +90,7 @@ class User extends AppModel {
 			'dependent' => false,
 			'conditions' => '',
 			'fields' => '',
-			'order' => '',
+			'order' => 'modified DESC',
 			'limit' => '',
 			'offset' => '',
 			'exclusive' => '',

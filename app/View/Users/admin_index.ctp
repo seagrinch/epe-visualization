@@ -13,7 +13,7 @@
     <?php foreach ($admins as $user) { ?>
     <tr>
       <td><?php echo $user['User']['name'] ?></td>
-      <td><?php echo $this->Html->link($user['User']['username'],array('action'=>'edit',$user['User']['id'])); ?></td>
+      <td><?php echo $this->Html->link('<i class="icon-wrench"></i> ' . $user['User']['username'],array('action'=>'edit',$user['User']['id']),array('escape'=>false)); ?></td>
       <td><?php echo $user['User']['email']?></td>
     <?php } ?> 
   </tbody>
@@ -48,8 +48,8 @@
   <tbody>
     <?php foreach ($users as $user) { ?>
     <tr>
-      <td><?php echo $this->Html->link($user['User']['name'],array('action'=>'profile',$user['User']['username'])); ?></td>
-      <td><?php echo $this->Html->link($user['User']['username'],array('action'=>'edit',$user['User']['id'])); ?></td>
+      <td><?php echo $this->Html->link('<i class="icon-user"></i> ' . $user['User']['name'],array('action'=>'profile',$user['User']['username'],'admin'=>false),array('escape'=>false)); ?></td>
+      <td><?php echo $this->Html->link('<i class="icon-wrench"></i> ' . $user['User']['username'],array('action'=>'edit',$user['User']['id']),array('escape'=>false)); ?></td>
       <td><?php echo $this->Html->link($user['User']['email'],'mailto:' . $user['User']['email']); ?></td>
       <td><?php echo $user['User']['institution']?></td>
       <td><?php echo ($user['User']['career_stage'] ? $career_stages[$user['User']['career_stage']] : '');?></td>

@@ -104,7 +104,7 @@ class UsersController extends AppController {
     if(empty($username) & $this->Auth->user('id')) {
       $username = $this->Auth->user('username');
     }
-    $this->set('user',$this->User->find('first', array('conditions'=>array('username'=>$username),'recursive'=>-1)));
+    $this->set('user',$this->User->find('first', array('conditions'=>array('username'=>$username),'recursive'=>1)));
   }
 
 /**
