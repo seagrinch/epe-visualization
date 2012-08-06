@@ -1,5 +1,5 @@
 <h2>Custom Visualization Editor</h2>
-<div class="row">
+<div class="row-fluid">
   <div class="span3">
   
     <div class="tabbable">
