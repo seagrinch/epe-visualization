@@ -1,5 +1,13 @@
-<div class="row">
-  <div class="span4 pull-right well">
+<div class="row-fluid">
+  <div class="span9">
+    <div id="chart"></div>
+    <?php echo $this->Html->script('d3.v2.min'); ?>
+    <?php echo $this->Html->script('ev_loader'); ?>
+    <script>
+      var vistool = new ToolLoader("<?php echo $this->Html->url(array('action'=>'settings',$visualization['Visualization']['id'])) ?>","chart");
+    </script>
+  </div>
+  <div class="span3 well">
     <h3><?php echo h($visualization['Visualization']['name']); ?></h3>
     <p><?php echo h($visualization['Visualization']['description']); ?></p>
     <?php if ($visualization['Provenance']['id']) { ?>
@@ -15,13 +23,5 @@
 		  <?php echo $this->Html->link(__('<i class="icon-trash icon-white"></i> Delete'), array('action' => 'delete', $visualization['Visualization']['id']), array('class'=>'btn btn-danger','escape'=>false), __('Are you sure you want to delete %s?', $visualization['Visualization']['name'])); ?>
 		  <?php echo $this->Html->link(__('<i class="icon-edit icon-white"></i> Edit'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?>
 		<?php } ?> 
-  </div>
-  <div class="span8">
-    <div id="chart"></div>
-    <?php echo $this->Html->script('d3.v2.min'); ?>
-    <?php echo $this->Html->script('ev_loader'); ?>
-    <script>
-      var vistool = new ToolLoader("<?php echo $this->Html->url(array('action'=>'settings',$visualization['Visualization']['id'])) ?>","chart");
-    </script>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="row-fluid">
-  <div class="span8">
+  <div class="span9">
     <div class="page-header">
         <h1><?php echo h($visTool['VisTool']['name']); ?> <small>Example tool with default settings</small></h1>
     </div>
@@ -12,7 +12,7 @@
       var tool_instance = new vistool('chart', '');
     </script>
   </div>
-  <div class="span4 well">
+  <div class="span3 well">
 		<h3>Tool Information</h3>
     <p><?php echo h($visTool['VisTool']['description']); ?></p>
     <p><strong>Version</strong>: <?php echo h($visTool['VisTool']['version']); ?><br/>
@@ -26,14 +26,14 @@
 		<?php } ?> 
   </div>
   <?php if ($visTool['VisTool']['help']) {?>
-  <div class="span4 well">
+  <div class="span3 well">
 		<h3>Tool Instructions</h3>
 		<?php echo h($visTool['VisTool']['help']); ?></p>
   </div>
   <?php } ?>
 </div>
 <div class="row-fluid">
-  <div class="span8">
+  <div class="span9">
     <hr/>
     <h3>Custom Visualizations</h3>
 	  <?php if (!empty($instances)): ?>
@@ -58,5 +58,5 @@
 
   <p><?php echo $this->Html->link(__('Customize this Tool <i class="icon-chevron-right icon-white"></i>'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary','escape'=>false));?> </p>
   </div>
-  <div class="span4">&nbsp;</div>
+  <div class="span3">&nbsp;</div>
 </div>

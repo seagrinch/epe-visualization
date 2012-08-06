@@ -1,6 +1,6 @@
 <h2>Custom Visualization Editor</h2>
 <div class="row">
-  <div class="span4">
+  <div class="span3">
   
     <div class="tabbable">
       <ul class="nav nav-tabs">
@@ -35,7 +35,7 @@
     <?php echo $this->Form->end();?>
   </div> <!-- span4 -->
 
-  <div class="span8">
+  <div class="span9">
     <div id="chart"></div>
       <?php echo $this->Html->script('d3.v2.min'); ?>
       <?php echo $this->Html->script('jquery.json-2.3.min'); // Required for ev_editor ?>
