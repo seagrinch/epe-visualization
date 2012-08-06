@@ -138,6 +138,31 @@ ToolEditor.prototype.draw_control = function(id, control, value){
 			ctrl = $("<div></div>").addClass("control").append(lbl).append(textarea);
 			break;
 
+    case "textareaDelimited":
+      console.log("drawing control for textareaDelimited");
+      var lbl = $("<label />")
+        .attr({'for':id})
+        .html(control.label);
+      var textarea = document.createElement("textarea");
+      var textareaVal = "";
+      for(var x=0; x < control.default_value.length; x++){
+        textareaVal += control.default_value[x];
+        if(x < control.default_value.length - 1 ){ textareaVal += "\n"}
+      }
+      $(textarea)
+        .attr({
+          'id':id,
+          'type':'textarea',
+          'value':textareaVal,
+          //'title':control.tooltip,
+          'rows':5
+        })
+        .change(function(){
+          self.update_config()
+        });
+      ctrl = $("<div></div>").addClass("control").append(lbl).append(textarea);
+      break;
+
 		case "dropdown":
 			var lbl = $("<label />")
 				.attr({'for':id,'title':control.tooltip})
