@@ -9,6 +9,6 @@
 	"configuration":<?php if (strlen($visualization['Visualization']['config_settings'])>0) {
 	  echo $visualization['Visualization']['config_settings'];
 	} else {
-	  echo "{}";
+	  echo "''";
 	}?>
 }

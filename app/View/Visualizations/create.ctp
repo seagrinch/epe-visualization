@@ -50,7 +50,7 @@
       <?php echo $this->Html->script('/files/tools/' . $vistool['VisTool']['function_name'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/' . $vistool['VisTool']['function_name'] . '.css'); ?>
       <script type="text/javascript">
-        var settings = <?php echo (isset($this->data['Visualization']['config_settings']) ? $this->data['Visualization']['config_settings'] : '{}'); ?>;
+        var settings = <?php echo (isset($this->data['Visualization']['config_settings']) ? $this->data['Visualization']['config_settings'] : "''"); ?>;
         var vistool = new ToolEditor("<?php echo $vistool['VisTool']['function_name']?>","chart",settings,"tool_controls");
       </script>
   </div>
