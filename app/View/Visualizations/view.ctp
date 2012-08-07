@@ -24,4 +24,10 @@
 		  <?php echo $this->Html->link(__('<i class="icon-edit icon-white"></i> Edit'), array('action' => 'edit', $visualization['Visualization']['id']),array('class'=>'btn btn-primary','escape'=>false)); ?>
 		<?php } ?> 
   </div>
+  <?php if ($visualization['Visualization']['inquiry_questions']) {?>
+  <div class="span3 well">
+		<h3>Inquiry Questions</h3>
+		<?php echo h($visualization['Visualization']['inquiry_questions']); ?></p>
+  </div>
+  <?php } ?>
 </div>

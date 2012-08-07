@@ -96,7 +96,7 @@ class Visualization extends AppModel {
   }
   
   public function savevis($data) {
-     return $this->save($data,true,array('name','description','is_public','config_settings','user_id','vis_tool_id','provenance_id'));
+     return $this->save($data,true,array('name','description','inquiry_questions','is_public','config_settings','user_id','vis_tool_id','provenance_id'));
   }
 
 
