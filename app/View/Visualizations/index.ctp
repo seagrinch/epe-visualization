@@ -17,7 +17,7 @@
 			<?php echo $this->Html->link('<i class="icon-wrench"></i>', array('controller' => 'vis_tools', 'action' => 'view', $visualization['VisTool']['id']),array('escape'=>false)); ?> <?php echo $visualization['VisTool']['name']?>
 		</td>
 		<td>
-			<?php echo $this->Html->link($visualization['User']['name'], array('controller' => 'users', 'action' => 'view', $visualization['User']['id'])); ?>
+			<?php echo $this->Html->link($visualization['User']['name'], array('controller' => 'users', 'action' => 'profile', $visualization['User']['username'])); ?>
 		</td>
 		<td><?php echo h($visualization['Visualization']['description']); ?>&nbsp;</td>
 		<td><?php echo $this->Time->niceShort($visualization['Visualization']['created']); ?>&nbsp;</td>

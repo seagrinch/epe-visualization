@@ -88,7 +88,7 @@ class User extends AppModel {
 			'className' => 'Visualization',
 			'foreignKey' => 'user_id',
 			'dependent' => false,
-			'conditions' => '',
+			'conditions' => array('is_public'=>2),
 			'fields' => '',
 			'order' => 'modified DESC',
 			'limit' => '',
