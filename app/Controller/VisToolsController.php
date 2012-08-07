@@ -59,7 +59,7 @@ class VisToolsController extends AppController {
     );
     $this->set('visTool', $this->VisTool->find('first',array('conditions'=>array('id'=>$id),'recursive'=>0)));
     $this->paginate = array(
-	  	'conditions'=>array('Visualization.vis_tool_id'=>$id,'Visualization.is_public'=>1),
+	  	'conditions'=>array('Visualization.vis_tool_id'=>$id,'Visualization.is_public'=>2),
 		  'recursive' => 0,
 		  'fields'=>array('Visualization.id','Visualization.name','Visualization.description','User.name'),
       'limit' => 5,
