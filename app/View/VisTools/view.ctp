@@ -5,6 +5,7 @@
     </div>
     <div id="chart"></div>
       <?php echo $this->Html->script('d3.v2.min'); ?>
+      <?php echo $this->Html->script('ev_tools'); ?>
       <?php echo $this->Html->script('/files/tools/' . $visTool['VisTool']['function_name'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/' . $visTool['VisTool']['function_name'] . '.css'); ?>
     <script>

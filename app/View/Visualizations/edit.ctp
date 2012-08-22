@@ -40,6 +40,7 @@
       <?php echo $this->Html->script('d3.v2.min'); ?>
       <?php echo $this->Html->script('jquery.json-2.3.min'); // Required for ev_editor ?>
       <?php echo $this->Html->script('ev_editor'); ?>
+      <?php echo $this->Html->script('ev_tools'); ?>
       <?php echo $this->Html->script('/files/tools/' . $vistool['VisTool']['function_name'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/' . $vistool['VisTool']['function_name'] . '.css'); ?>
       <script type="text/javascript">
