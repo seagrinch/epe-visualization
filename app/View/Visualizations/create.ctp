@@ -24,7 +24,7 @@
           <div id="tool_controls"></div>
         </div>
         <div class="tab-pane" id="vistab3">
-          <?php echo $vistool['VisTool']['help']?>
+      		<?php echo $this->textile->process($vistool['VisTool']['help']); ?>
         </div>
       </div> <!-- tab-content-->
       <p>&nbsp;</p>

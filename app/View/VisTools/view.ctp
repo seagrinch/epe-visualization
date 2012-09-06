@@ -29,7 +29,7 @@
   <?php if ($visTool['VisTool']['help']) {?>
   <div class="span3 well">
 		<h3>Tool Instructions</h3>
-		<?php echo h($visTool['VisTool']['help']); ?></p>
+		<?php echo $this->textile->process($visTool['VisTool']['help']); ?>
   </div>
   <?php } ?>
 </div>

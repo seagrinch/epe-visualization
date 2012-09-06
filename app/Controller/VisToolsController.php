@@ -67,6 +67,7 @@ class VisToolsController extends AppController {
           'VisTool.created' => 'asc'
       ));
 		$this->set('instances', $this->paginate('Visualization'));
+		$this->helpers[] = 'Textile';
 	}
 
 
