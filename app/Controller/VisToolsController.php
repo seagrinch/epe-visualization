@@ -79,7 +79,7 @@ class VisToolsController extends AppController {
 	public function admin_index() {
 		$this->paginate = array(
 		  'recursive' => 0,
-      'limit' => 25,
+      'limit' => 10,
       'order' => array(
           'VisTool.created' => 'asc'
       ));

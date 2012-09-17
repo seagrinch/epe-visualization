@@ -23,7 +23,7 @@ class UsersController extends AppController {
  */
   public $paginate = array(
     'recursive'=>-1,
-    'limit'=>25,
+    'limit'=>10,
         'order' => array('User.created' => 'desc'),
   );
 

@@ -22,7 +22,7 @@ class VisualizationsController extends AppController {
  */
   public $paginate = array(
     'recursive'=>0,
-    'limit'=>25,
+    'limit'=>10,
     'order' => array('created' => 'desc'),
   );
 
