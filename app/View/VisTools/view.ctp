@@ -21,17 +21,26 @@
       <strong>Status</strong>: <?php echo h($visTool['VisTool']['status']); ?><br/>
       <strong>Author</strong>: <?php echo h($visTool['VisTool']['author']); ?><br/>
       <strong>Institution</strong>: <?php echo h($visTool['VisTool']['institution']); ?></p>
+    <?php if ($visTool['VisTool']['help']) {?>
+      <button type="button" class="btn btn-info" data-toggle="modal" data-target="#toolhelp"><i class="icon-question-sign icon-white"></i> Instructions</button>
+    <?php } ?>
 		<p><?php if ($this->Session->read('Auth.User.is_admin')) { ?>
 		  <?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
 		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> </p>
 		<?php } ?> 
   </div>
-  <?php if ($visTool['VisTool']['help']) {?>
-  <div class="span3 well">
-		<h3>Tool Instructions</h3>
-		<?php echo $this->textile->process($visTool['VisTool']['help']); ?>
+  <div id="toolhelp" class="modal hide fade">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h3>Tool Instructions</h3>
+    </div>
+    <div class="modal-body" style="max-height:400px;">
+      <?php echo $this->textile->process($visTool['VisTool']['help']); ?>
+    </div>
+    <div class="modal-footer">
+      <a href="#" data-dismiss="modal" class="btn">Close</a>
+    </div>
   </div>
-  <?php } ?>
 </div>
 <div class="row-fluid">
   <div class="span9">
