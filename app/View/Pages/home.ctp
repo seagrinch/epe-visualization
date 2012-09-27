@@ -7,7 +7,7 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="span6">
-          <h2>Recent Visualizations</h2>
+          <h2>Recent Public Visualizations</h2>
           <?php //echo $this->element('visualizations', array(), array('cache' => true)); ?>
           <?php echo $this->element('visualizations'); ?>
         </div>
@@ -18,10 +18,10 @@
       </div>
       <div class="row">
         <div class="span6">
-          <p class="pull-right"><?php echo $this->Html->link('More Visualizations <i class="icon-chevron-right"></i>','/visualizations',array('class'=>'btn btn-small','escape'=>false));?></p>
+          <p class="pull-left"><?php echo $this->Html->link('More Visualizations <i class="icon-chevron-right icon-white"></i>','/visualizations',array('class'=>'btn btn-info','escape'=>false));?></p>
         </div>
         <div class="span6">
-          <p class="pull-right"><?php echo $this->Html->link('More Tools <i class="icon-chevron-right"></i>','/vis_tools',array('class'=>'btn btn-small','escape'=>false));?> </p>
+          <p class="pull-right"><?php echo $this->Html->link('More Tools <i class="icon-chevron-right icon-white"></i>','/vis_tools',array('class'=>'btn btn-info','escape'=>false));?> </p>
         </div>
       </div>
 
