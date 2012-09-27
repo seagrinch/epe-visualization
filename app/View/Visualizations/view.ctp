@@ -2,7 +2,6 @@
   <div class="span9">
     <div id="chart"></div>
     <?php echo $this->Html->script('d3.v2.min'); ?>
-    <?php echo $this->Html->script('ev_loader'); ?>
     <?php echo $this->Html->script('ev_tools'); ?>
     <script>
       var vistool = new ToolLoader("<?php echo $this->Html->url(array('action'=>'settings',$visualization['Visualization']['id'])) ?>","chart");
