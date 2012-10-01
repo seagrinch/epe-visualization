@@ -269,6 +269,8 @@ EVTool.prototype.loadDependencies = function ( dependScripts ) {
 /**************************************************************************************/
 
 EVTool.prototype.uiBootstrap = function ( id, bsType, opts ) {
+
+    "use strict";
     // helper functions for bootstrap nested divs
 
     // bsType : fluidContainer
@@ -338,7 +340,7 @@ EVTool.prototype.toolControl = function (tool, id, control) {
                     'type': 'textbox',
                     'value': control.default_value,
                     'title': control.tooltip,
-                    'maxlength': typeof (control.maxlength) == "undefined" ? "" : control.maxlength
+                    'maxlength': typeof (control.maxlength) === "undefined" ? "" : control.maxlength
                 })
                 //.addClass("span2")
                 .on("change", function () {
@@ -366,10 +368,13 @@ EVTool.prototype.toolControl = function (tool, id, control) {
                     'rows':5
                 })
                 .change(function(){
-                    self.update_config()
+                    self.customizationUpdate();
                 });
 
-            ctrl = $("<div></div>").addClass("control").append(lbl).append(textarea);
+            ctrl = $("<div></div>")
+                .addClass("control")
+                .append(lbl)
+                .append(textarea);
 
             break;
 
@@ -412,7 +417,7 @@ EVTool.prototype.toolControl = function (tool, id, control) {
             ctrl = $('<div></div>');
             //.addClass("control");
 
-            if ( ! control.nolabel === "true" ){
+            if (control.nolabel !== "true" ){
                 ctrl.append( lbl );
             }
 
@@ -549,27 +554,9 @@ EVTool.prototype.toolControl = function (tool, id, control) {
         case "selection":
             console.log("tool control.. SELECTION");
 
-//            // EXAMPLE Usage:
-//            var template = self.uiBootstrap("fluidContainer",
-//                {
-//                    rows:[
-//                        {
-//                            cols:[2,4,6],
-//                            colControls:[ control1, control2],
-//                        },
-//                        {
-//
-//                            cols:[2,4,6],
-//                            colControls:[ control3, control4],
-//                        }
-//                    ]
-//
-//                }
-//            );
-
             lbl = $("<label />")
                 .attr({
-                    'for': id + "_cp",
+                    'for': id + "-dropdown",
                     'title': control.tooltip
                 })
                 .html( control.description );
@@ -657,7 +644,6 @@ EVTool.prototype.toolControl = function (tool, id, control) {
 
     return ctrl;
 };
-
 
 // Other things
 
@@ -903,8 +889,8 @@ ioosSOS.prototype.stationListLB = function ( stationList, delimiterElement, deli
     //s = s.replace(/[ ]{2,}/gi," ");
     var stationsObj = {}, stationAry, delimEl, delimProp;
 
-    if( typeof( delimiterElement ) == "undefined" ) delimEl = "\n";
-    if( typeof( delimiterProperty ) == "undefined" ) delimProp = "|";
+    if( typeof( delimiterElement ) === "undefined" ) delimEl = "\n";
+    if( typeof( delimiterProperty ) === "undefined" ) delimProp = "|";
 
     if( typeof(stationList) === "string"){
 

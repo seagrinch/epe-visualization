@@ -27,11 +27,11 @@ var ToolEditor = function ( fname, div_vis, configuration, div_control) {
 /**
  * Initialize
  */
-ToolEditor.prototype.initialize = function ( ) {
+ToolEditor.prototype.initialize = function () {
     var instance = this;
 
     // Initalize a new instance of the tool with the instance configuration
-    instance.tool_instance = new instance.vistool( instance.div_vis,instance.configuration );
+    instance.tool_instance = new instance.vistool(instance.div_vis, instance.configuration);
 
     // Create the configuration control panel
     if (typeof (instance.div_control) !== "undefined") {
@@ -47,48 +47,51 @@ ToolEditor.prototype.load_controls = function (div_control) {
     var instance = this;
 
     // Override control default setting with the instance configuration
-    $.each( instance.configuration, function (index) {
-        if (typeof(instance.tool_instance.controls[index] ) !== "undefined") {
+    $.each(instance.configuration, function (index) {
+        if (typeof (instance.tool_instance.controls[index]) !== "undefined") {
             instance.tool_instance.controls[index].default_value = instance.configuration[index];
         }
     });
 
     // Add each control to the specified div
-    $.each(instance.tool_instance.controls, function ( index, control ) {
-        $('#'+div_control)
+    $.each(instance.tool_instance.controls, function (index, control) {
+        $('#' + div_control)
             .append(
-            $(instance.evtool.toolControl( null, "config-", control))
-                .addClass("ctlhandle")
+                $(instance.evtool.toolControl(instance,"config-"+index, control))
         );
     });
 
     // Now draw an update button that will redraw the instance
     var el_btn = $('<button type="button">Update Visualization</button>')
         .addClass("btn pull-right")
-        .click( function () {instance.redraw();});
+        .click( function () {instance.redraw(); });
 
-    $('#'+div_control).append(el_btn);
+    $('#' + div_control).append(el_btn);
 
 };
 
 /**
  * Redraw
  */
-ToolEditor.prototype.redraw = function ( ) {
+ToolEditor.prototype.redraw = function () {
 
     var instance = this;
+    instance.update_config();
 
     // remove children of the display window, which will clear all existing charts
     $('#' + instance.div_vis).children().remove();
 
     // reinitalize the instance of the tool, loading the UPDATED instance configuration
     instance.tool_instance = new instance.vistool(instance.div_vis, instance.tool_instance.tool.configuration.custom);
+
     return false;
+
 };
+
 /**
  * Reset Tool
  */
-ToolEditor.prototype.reset = function ( ) {
+ToolEditor.prototype.reset = function () {
 
     var instance = this;
 
@@ -105,6 +108,8 @@ ToolEditor.prototype.reset = function ( ) {
  * Draw Control
  */
 ToolEditor.prototype.draw_control = function ( id, control, value ) {
+
+    "use strict";
 
     var self = this;
 
@@ -124,11 +129,11 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
 
             $(input)
                 .attr({
-                    'id':id,
-                    'type':'textbox',
-                    'value':control.default_value,
-                    'title':control.tooltip,
-                    'maxlength':typeof(control.maxlength)=="undefined"?"":control.maxlength
+                    'id'        : id,
+                    'type'      : 'textbox',
+                    'value'     : control.default_value,
+                    'title'     : control.tooltip,
+                    'maxlength' : typeof(control.maxlength) === "undefined" ? "" : control.maxlength
                 })
                 .change(function(){
                     self.update_config()
@@ -153,10 +158,13 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
                     'rows':5
                 })
                 .change(function(){
-                    self.update_config()
+                    self.update_config();
                 });
 
-            ctrl = $("<div></div>").addClass("control").append(lbl).append(textarea);
+            ctrl = $("<div></div>")
+                .addClass("control")
+                .append(lbl)
+                .append(textarea);
 
             break;
 
@@ -190,7 +198,7 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
                     'rows':5
                 })
                 .change(function(){
-                    self.update_config()
+                    self.update_config();
                 });
 
             ctrl = $("<div></div>")
@@ -210,7 +218,7 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
             var select = $("<select></select>")
                 .attr({"id":id})
                 .change(function(){
-                    self.update_config()
+                    self.update_config();
                 });
 
             $.each(control.options,function(option){
@@ -229,7 +237,9 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
             var lbl = $("<label />")
                 .attr({'for':id,'title':control.tooltip})
                 .html(control.label);
+
             var input = document.createElement("input");
+
             $(input)
                 .attr({
                     'id':id,
@@ -350,14 +360,21 @@ ToolEditor.prototype.draw_control = function ( id, control, value ) {
  */
 ToolEditor.prototype.update_config = function () {
 
-    var instance = this;
+    var editorInstance = this,
+        toolInstance = editorInstance.tool_instance,
+        config = toolInstance.tool.configuration.custom;
 
     console.log('Updating Settings');
+    console.log('with configuration:', editorInstance, toolInstance,config);
 
-    $.each(instance.tool_instance.controls,function (control) {
-        instance.tool_instance.tool.configuration.custom[control] = $('#'+control).val();
+    // tool config will be overwritten on tool creation
+
+    $.each(toolInstance.controls,function (control) {
+        toolInstance.tool.configuration.custom[control] = $('#config-' + control).val();
+
     });
 };
+
 
 /**
  * setJSON
