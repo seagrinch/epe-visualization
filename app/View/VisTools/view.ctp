@@ -24,10 +24,11 @@
     <?php if ($visTool['VisTool']['help']) {?>
       <button type="button" class="btn btn-info" data-toggle="modal" data-target="#toolhelp"><i class="icon-question-sign icon-white"></i> Instructions</button>
     <?php } ?>
-		<p><?php if ($this->Session->read('Auth.User.is_admin')) { ?>
-		  <?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
+		<?php if ($this->Session->read('Auth.User.is_admin')) { ?>
+		  <p><?php echo $this->Form->postLink(__('Delete Tool'), array('action' => 'delete', $visTool['VisTool']['id'],'admin'=>true), array('class'=>'btn btn-danger'), __('Are you sure you want to delete %s?', $visTool['VisTool']['name'])); ?>
 		  <?php echo $this->Html->link(__('Edit Tool'), array('action' => 'edit', $visTool['VisTool']['id'],'admin'=>true),array('class'=>'btn btn-primary')); ?> </p>
 		<?php } ?> 
+    <p><?php echo $this->Html->link(__('Customize this Tool <i class="icon-chevron-right icon-white"></i>'), array('controller' => 'visualizations', 'action' => 'create', $visTool['VisTool']['id']),array('class'=>'btn btn-primary','escape'=>false));?> </p>
   </div>
   <div id="toolhelp" class="modal hide fade">
     <div class="modal-header">
