@@ -6,7 +6,7 @@ App::uses('AppController', 'Controller');
  * @property Visualization $Visualization
  */
 class VisualizationsController extends AppController {
-  public $helpers = array('Geography','Time');
+  public $helpers = array('Geography','Time','Textile');
   public $uses = array('Visualization','VisTool');
 
 /**
@@ -92,7 +92,6 @@ class VisualizationsController extends AppController {
   	$this->VisTool->recursive = -1;
   	$this->set('vistool',$this->VisTool->find('first',array('recursive'=>0,'conditions'=>array('id'=>$tid))));
 //	  $this->request->data = array_merge($this->VisTool->read(null, $tid), $this->request->data);
-		$this->helpers[] = 'Textile';
 	}
 
 /**
@@ -153,7 +152,6 @@ class VisualizationsController extends AppController {
 			$this->request->data = $this->Visualization->findvis($id);
 		}
   	$this->set('vistool',$this->VisTool->find('first',array('recursive'=>0,'conditions'=>array('id'=>$this->Visualization->field('vis_tool_id')))));
-		$this->helpers[] = 'Textile';
 	}
 
 
