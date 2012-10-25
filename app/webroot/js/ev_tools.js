@@ -92,6 +92,18 @@ EVTool.prototype.getFormatDateTicks = function ( dateTickFormatType) {
     }
 };
 
+EVTool.prototype.formatLat = function (lat){
+    //40.350741
+    return d3.round(Math.abs(lat),4) + (+lat > 0 ? "N" : "S");
+
+};
+EVTool.prototype.formatLong = function (long){
+
+//    -73.882319
+    return d3.round(Math.abs(long),4) + (+long > 0 ? "E" : "W");
+
+};
+
 /**************************************************************************************/
 //
 //  C O N F I G U R A T I O N   P A R S I N G
@@ -563,7 +575,7 @@ EVTool.prototype.toolControl = function (tool, id, control) {
 
             // add dropdown..
 
-            var el_selectionDropdown = self.toolControl( tool, id+"-dropdown", control.dropdown );
+            var el_selectionDropdown = self.toolControl(tool, id+"-dropdown", control );
 
             var el_button = $("<a></a>")
                 .addClass("btn next")
@@ -742,7 +754,6 @@ ToolLoader.prototype.get_settings = function ( ) {
 //
 /**************************************************************************************/
 
-
 var ioosSOS = function () {};
 
 ioosSOS.prototype.getObservationObj = function ( aryObservation ) {
@@ -919,7 +930,6 @@ ioosSOS.prototype.stationListLB = function ( stationList, delimiterElement, deli
 
     return stationsObj;
 };
-
 
 // GENERIC Prototypes
 Array.prototype.stdev = function ( key ) {
