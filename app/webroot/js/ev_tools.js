@@ -4,7 +4,8 @@
 // Education & Public Engagement Implementing Organization
 //
 // Written by Michael Mills and Sage Lichtenwalner, Rutgers University
-// Revised 9/18/12
+// Revised 10/25/12
+// version 1.0.1
 
 
 var EVTool = function () { };
@@ -92,11 +93,45 @@ EVTool.prototype.getFormatDateTicks = function ( dateTickFormatType) {
     }
 };
 
-/**************************************************************************************/
+EVTool.prototype.formatLat = function (lat){
+    //40.350741
+    return d3.round(Math.abs(lat),4) + (+lat > 0 ? "N" : "S");
+
+};
+
+EVTool.prototype.formatLong = function (long){
+
+//    -73.882319
+    return d3.round(Math.abs(long),4) + (+long > 0 ? "E" : "W");
+
+};
+
+EVTool.prototype.formatGliderObs = function ( n, obs ) {
+
+    var f, ff;
+
+    // find format for observation. if observation not found, format string is obs
+    switch(obs){
+
+        case "density" : f = ".6r"; break;
+        case "tempwat" : f = ".3r"; break;
+        case "pracsal" :
+        case "cdomflo" :
+        case "chlaflo" :
+        case "optparw" :
+        case "flubsct" : f = "0.2r"; break;
+        default : f = obs;
+    }
+
+    ff = d3.format(f);
+
+    return ff(n);
+
+};
+
 //
 //  C O N F I G U R A T I O N   P A R S I N G
 //
-/**************************************************************************************/
 
 EVTool.prototype.configuration = function () {};
 
@@ -116,11 +151,9 @@ EVTool.prototype.configurationParse = function( configCustom, objConfigOverride 
     }
 };
 
-/**************************************************************************************/
 //
 //  D A T A   R E Q U E S T   A N D   P A R S I N G
 //
-/**************************************************************************************/
 
 EVTool.prototype.dataRequest = function () {
     // there are currently multiple data request methods.. these will be combined here.
@@ -129,11 +162,9 @@ EVTool.prototype.dataParse = function () {
     // data parsing methods will be combined
 };
 
-/**************************************************************************************/
 //
 //  D O M   M A N I P U L A T I O N
 //
-/**************************************************************************************/
 
 EVTool.prototype.domToolID = function ( domId ) {
 
@@ -148,11 +179,9 @@ EVTool.prototype.domToolID = function ( domId ) {
     }
 };
 
-/**************************************************************************************/
 //
 //  D E P E N D E N C I E S
 //
-/**************************************************************************************/
 
 EVTool.prototype.loadDependencies = function ( dependScripts ) {
 
@@ -262,11 +291,9 @@ EVTool.prototype.loadDependencies = function ( dependScripts ) {
 
 };
 
-/**************************************************************************************/
 //
 //  C O N T R O L   C R E A T I O N
 //
-/**************************************************************************************/
 
 EVTool.prototype.uiBootstrap = function ( id, bsType, opts ) {
 
@@ -563,7 +590,7 @@ EVTool.prototype.toolControl = function (tool, id, control) {
 
             // add dropdown..
 
-            var el_selectionDropdown = self.toolControl( tool, id+"-dropdown", control.dropdown );
+            var el_selectionDropdown = self.toolControl(tool, id+"-dropdown", control );
 
             var el_button = $("<a></a>")
                 .addClass("btn next")
@@ -666,14 +693,11 @@ EVTool.prototype.linearRegression = function( x, y ){
     return lr;
 };
 
-
-/**************************************************************************************/
 //
 //  TOOL LOADER
 //
 //  EPE Visualization Service - Tool Loader Class
 //
-/**************************************************************************************/
 
 // ToolLoader parent object
 
@@ -736,12 +760,9 @@ ToolLoader.prototype.get_settings = function ( ) {
     });
 };
 
-/**************************************************************************************/
 //
 //  N D B C   I O O S   D A T A
 //
-/**************************************************************************************/
-
 
 var ioosSOS = function () {};
 
@@ -872,6 +893,7 @@ ioosSOS.prototype.requestUrlTimeseriesDate = function ( ndbcStation, observedPro
     return "http://epe.marine.rutgers.edu/visualization/" + "proxy_ndbc.php?" +
         "http://sdf.ndbc.noaa.gov/sos/server.php?" +
         "request=GetObservation" +
+        "&" + "version=1.0.0" +
         "&" + "service=SOS" +
         "&" + "offering=urn:ioos:station:wmo:" + ndbcStation +
         "&" + "observedproperty=" + observedProperty +
@@ -920,7 +942,6 @@ ioosSOS.prototype.stationListLB = function ( stationList, delimiterElement, deli
     return stationsObj;
 };
 
-
 // GENERIC Prototypes
 Array.prototype.stdev = function ( key ) {
 
@@ -951,6 +972,3 @@ Array.prototype.stdev = function ( key ) {
 
     return stddev;
 };
-
-
-
