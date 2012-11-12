@@ -893,6 +893,7 @@ ioosSOS.prototype.requestUrlTimeseriesDate = function ( ndbcStation, observedPro
     return "http://epe.marine.rutgers.edu/visualization/" + "proxy_ndbc.php?" +
         "http://sdf.ndbc.noaa.gov/sos/server.php?" +
         "request=GetObservation" +
+        "&" + "version=1.0.0" +
         "&" + "service=SOS" +
         "&" + "offering=urn:ioos:station:wmo:" + ndbcStation +
         "&" + "observedproperty=" + observedProperty +
