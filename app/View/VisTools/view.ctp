@@ -9,8 +9,7 @@
       <?php echo $this->Html->script('/files/tools/' . $visTool['VisTool']['function_name'] . '.js'); ?>
       <?php echo $this->Html->css('/files/tools/' . $visTool['VisTool']['function_name'] . '.css'); ?>
     <script>
-      vistool = eval(<?php echo h($visTool['VisTool']['function_name']); ?>);
-      var tool_instance = new vistool('chart', '');
+      var tool_instance = new <?php echo h($visTool['VisTool']['function_name']); ?>('chart', '');
     </script>
   </div>
   <div class="span3 well">
